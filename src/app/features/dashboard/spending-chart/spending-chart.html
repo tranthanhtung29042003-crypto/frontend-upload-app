@@ -1,0 +1,33 @@
+<div class="chart-dashboard">
+  <div class="chart-container main-chart">
+    <div class="chart-header">
+      <h3>Spending Trends</h3>
+      <p>January - June 2024</p>
+    </div>
+    <canvas baseChart
+            [data]="barChartData"
+            [options]="barChartOptions"
+            [type]="'bar'">
+    </canvas>
+  </div>
+
+  <div class="chart-container side-chart">
+    <h3>Categories</h3>
+    <div class="doughnut-wrapper">
+      <canvas baseChart
+              [data]="doughnutData"
+              [options]="doughnutOptions"
+              [type]="'doughnut'">
+      </canvas>
+      <div class="center-text">
+        <strong>Top 3</strong>
+        <span>SPLIT</span>
+      </div>
+    </div>
+    <ul class="custom-legend">
+      <li><span class="dot blue"></span> Software SaaS <span>45%</span></li>
+      <li><span class="dot light-blue"></span> Cloud Infra <span>25%</span></li>
+      <li><span class="dot brown"></span> Marketing <span>30%</span></li>
+    </ul>
+  </div>
+</div>

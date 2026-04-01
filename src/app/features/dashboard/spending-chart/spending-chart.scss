@@ -1,0 +1,42 @@
+.chart-dashboard {
+  display: flex;
+  gap: 20px;
+
+  .chart-container {
+    background: white;
+    border-radius: 24px;
+    padding: 24px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+    
+    h3 { margin: 0; color: #3f51b5; font-weight: 700; }
+  }
+
+  .main-chart { flex: 2; }
+  .side-chart { flex: 1; }
+
+  .doughnut-wrapper {
+    position: relative;
+    margin: 20px 0;
+
+    .center-text {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      strong { font-size: 20px; display: block; }
+      span { font-size: 10px; color: gray; }
+    }
+  }
+
+  .custom-legend {
+    list-style: none; padding: 0;
+    li {
+      display: flex; align-items: center; justify-content: space-between;
+      font-size: 13px; margin-bottom: 8px;
+      .dot { width: 8px; height: 8px; border-radius: 50%; margin-right: 10px; }
+      .blue { background: #3f51b5; }
+      .light-blue { background: #4fc3f7; }
+      .brown { background: #8d4e0e; }
+    }
+  }
+}

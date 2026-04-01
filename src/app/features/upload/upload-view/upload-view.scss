@@ -1,0 +1,74 @@
+.recent-curations {
+  margin-top: 40px;
+  padding: 0 20px;
+
+  .curations-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 24px;
+
+    .title-group {
+      h3 { font-size: 18px; font-weight: 800; margin: 0; color: #1a1a1a; }
+      p { font-size: 13px; color: #70757a; margin: 4px 0 0 0; }
+    }
+
+    .view-history {
+      font-size: 12px;
+      font-weight: 800;
+      color: #3f51b5;
+      text-decoration: none;
+      letter-spacing: 0.5px;
+      &:hover { text-decoration: underline; }
+    }
+  }
+
+  .curations-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); // Chia đều 4 cột
+    gap: 20px;
+  }
+
+  .curation-card {
+    background-color: #f1f3f4; // Màu nền xám nhạt như hình
+    border-radius: 20px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    transition: background-color 0.2s;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #e8eaed;
+    }
+
+    .file-icon {
+      width: 40px;
+      height: 40px;
+      background: #ffffff;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      
+      mat-icon {
+        color: #bdc1c6; // Màu icon xám nhạt
+        font-size: 20px;
+      }
+    }
+
+    .file-skeleton {
+      flex: 1;
+      .line {
+        height: 8px;
+        background-color: #e8eaed;
+        border-radius: 4px;
+        margin-bottom: 6px;
+        
+        &.long { width: 80%; }
+        &.short { width: 40%; margin-bottom: 0; }
+      }
+    }
+  }
+}

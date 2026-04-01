@@ -1,0 +1,75 @@
+@if (data) {
+  <div class="transaction-form">
+
+    <!-- Vendor -->
+    <div class="field-group">
+      <label>Primary Vendor / Payee</label>
+      <div class="input-wrapper">
+        <input type="text" [value]="data.vendor" />
+        <span class="check-icon">✓</span>
+      </div>
+      <small>{{ subVendorInfo }}</small>
+    </div>
+
+    <!-- Row 2 cols -->
+    <div class="row-2-cols">
+      <div class="field-group">
+        <label>Posting Date</label>
+        <input type="text" [value]="data.postingDate" />
+      </div>
+
+      <div class="field-group">
+        <label>Currency</label>
+        <select>
+          <option>{{ data.currency }}</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Aggregated -->
+    <div class="aggregated-card">
+      <div class="card-header">
+        <label>Transaction Total (Aggregated)</label>
+        <span class="auto-sum-tag">AUTO-SUMMED</span>
+      </div>
+
+      <div class="amount">
+        {{ data.totalAmount | currency:'USD':'symbol':'1.2-2' }}
+      </div>
+
+      <div class="doc-breakdown">
+        @for (page of data.pages; track page; let i = $index) {
+        @if (data.pages && data.pages.length > 0) {
+  <span>
+    {{ (data.totalAmount / data.pages.length) | currency:'USD' }}
+  </span>
+} @else {
+  <span>{{ data.totalAmount | currency:'USD' }}</span>
+}
+        }
+      </div>
+    </div>
+
+    <!-- Category -->
+    <div class="field-group">
+      <label>Main Expense Category</label>
+      <select class="category-select">
+        @for (cat of categories; track cat) {
+          <option>{{ cat }}</option>
+        }
+      </select>
+    </div>
+
+    <!-- Grouping note -->
+    <div class="grouping-note">
+      <div class="note-icon">📂</div>
+      <div class="note-text">
+        <strong>Transaction Grouping Logic</strong>
+        <p>
+          These documents were grouped because they share a common Purchase Order (PO-9823).
+        </p>
+      </div>
+    </div>
+
+  </div>
+}

@@ -1,0 +1,21 @@
+$primary-color: #2D3FE2;    // Màu Indigo chủ đạo [cite: 1]
+$bg-app: #F8F9FC;           // Màu nền xám nhạt [cite: 1]
+$white: #FFFFFF;
+$text-main: #1E293B;        // Màu chữ tiêu đề 
+$text-muted: #64748B;       // Màu chữ phụ [cite: 33]
+$success: #10B981;          // Trạng thái Paid [cite: 85]
+$warning: #F59E0B;          // Trạng thái Pending [cite: 94]
+$danger: #EF4444;           // Trạng thái Failed [cite: 39]
+$radius: 12px;
+$shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+$text-dark: #1e293b;
+$text-light: #64748b;
+$blue-primary: #435ebe;
+
+@mixin card-style {
+  background: $white;
+  border-radius: $radius;
+  border: 1px solid #E2E8F0;
+  box-shadow: $shadow-sm;
+  padding: 24px;
+}

@@ -1,0 +1,26 @@
+<div class="pagination-bar">
+
+  <div class="info">
+    Showing {{ startItem }}–{{ endItem }} of {{ totalItems }} invoices
+  </div>
+
+  <div class="pagination">
+
+    <button (click)="prev()" [class.disabled]="currentPage === 1">
+      ‹
+    </button>
+
+    @for (p of pages(); track p) {
+      <button
+        (click)="goTo(p)"
+        [class.active]="p === currentPage">
+        {{ p }}
+      </button>
+    }
+
+    <button (click)="next()" [class.disabled]="currentPage === totalPages">
+      ›
+    </button>
+
+  </div>
+</div>

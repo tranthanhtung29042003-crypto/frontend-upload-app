@@ -1,0 +1,23 @@
+<div class="transaction-layout">
+  
+  <div class="wrapper">
+    
+    <app-transaction-header 
+      [id]="mockTransaction.id" 
+      [confidence]="mockTransaction.confidence">
+    </app-transaction-header>
+
+    <div class="main-content">
+      <div class="viewer-container">
+        <app-invoice-viewer [pages]="mockTransaction.pages"></app-invoice-viewer>
+      </div>
+
+      <div class="data-container">
+        <div class="form-scroll-area">
+          <app-transaction-form [data]="mockTransaction"></app-transaction-form>
+        </div>
+        <app-transaction-footer></app-transaction-footer>
+      </div>
+    </div>
+
+  </div> </div>

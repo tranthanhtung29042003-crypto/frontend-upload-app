@@ -1,0 +1,53 @@
+<div class="table card">
+  <div class="thead">
+    <span>Vendor</span>
+    <span>Date</span>
+    <span>Category</span>
+    <span>Amount</span>
+    <span>Status</span>
+    <span></span>
+  </div>
+
+  <div class="invoice-table">
+    @for (item of paginatedData; track $index) {
+      <div class="row">
+        <div class="col vendor">
+          <div class="avatar">{{ item.name[0] }}</div>
+          <div class="vendor-info">
+            <span class="name">{{ item.name }}</span>
+            <span class="code">{{ item.code }}</span>
+          </div>
+        </div>
+
+        <div class="col date">{{ item.date }}</div>
+
+        <div class="col">
+          <span class="badge">{{ item.category }}</span>
+        </div>
+
+        <div class="col amount">{{ item.amount }}</div>
+
+        <div class="col status">
+          <span [ngClass]="item.status === 'Processed' ? 'ok' : 'fail'">
+            ● {{ item.status }}
+          </span>
+        </div>
+
+        <div class="col menu">
+          <button mat-icon-button>
+            <mat-icon>more_vert</mat-icon>
+          </button>
+        </div>
+      </div>
+    } @empty {
+      <div class="empty-state">No invoices found.</div>
+    }
+  </div>
+
+  <app-invoice-pagination 
+    [totalItems]="invoices.length"
+    [pageSize]="pageSize"
+    [currentPage]="currentPage"
+    (pageChange)="onPageChange($event)">
+  </app-invoice-pagination>
+</div>

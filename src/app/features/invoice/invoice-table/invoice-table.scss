@@ -1,0 +1,139 @@
+
+ @use '../../../../styles/variables' as *;
+
+.table.card {
+  background: $white;
+  border-radius: 16px;
+  padding: 0 24px;
+}
+
+/* GRID LAYOUT */
+.thead,
+.row {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr 1fr 40px;
+  align-items: center;
+}
+
+/* HEADER */
+.thead {
+  padding: 20px 0;
+  font-size: 12px;
+  color: $blue-primary;
+  letter-spacing: 0.05em;
+
+  span {
+    text-transform: uppercase;
+  }
+}
+
+/* ROW */
+.row {
+  padding: 16px 0;
+  border-top: 1px solid #f1f5f9;
+}
+
+/* COL fix spacing */
+.col {
+  display: flex;
+  align-items: center;
+}
+
+/* VENDOR */
+.vendor {
+  gap: 12px;
+
+  .avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #f1f5f9;
+    display: grid;
+    place-items: center;
+    font-weight: bold;
+  }
+
+  .vendor-info {
+    display: flex;
+    flex-direction: column;
+
+    .name {
+      font-weight: 500;
+      color: $text-main;
+    }
+
+    .code {
+      font-size: 12px;
+      color: $text-light;
+    }
+  }
+}
+
+/* DATE */
+.date {
+  color: $text-light;
+  font-size: 14px;
+}
+
+/* BADGE */
+.badge {
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  background: #e0f2fe;
+  color: #0369a1;
+}
+
+/* AMOUNT */
+.amount {
+  font-weight: 700;
+  color: $text-main;
+}
+
+/* STATUS */
+.status {
+  span {
+    font-weight: 500;
+  }
+
+  .ok {
+    color: #10b981;
+  }
+
+  .fail {
+    color: #dc2626;
+  }
+}
+
+/* MENU */
+.menu {
+  justify-content: flex-end;
+}
+
+/* EMPTY */
+.empty-state {
+  padding: 24px;
+  text-align: center;
+  color: $text-light;
+}
+
+/* PAGINATION */
+.pagination {
+  display: flex;
+  justify-content: flex-end;
+  gap: 6px;
+  margin-top: 12px;
+
+  button {
+    border: none;
+    padding: 6px 10px;
+    border-radius: 6px;
+    background: #f3f4f6;
+    cursor: pointer;
+
+    &.active {
+      background: #6366f1;
+      color: white;
+    }
+  }
+}
