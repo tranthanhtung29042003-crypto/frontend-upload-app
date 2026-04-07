@@ -12,43 +12,43 @@
     </div>
 
     <!-- Row 2 cols -->
-    <div class="row-2-cols">
-      <div class="field-group">
-        <label>Posting Date</label>
-        <input type="text" [value]="data.postingDate" />
-      </div>
+<div class="row-2-cols">
+  <mat-form-field appearance="fill" class="custom-field">
+    <mat-label>Posting Date</mat-label>
+    <input matInput [value]="data.postingDate">
+    <mat-icon matSuffix *ngIf="true">check_circle</mat-icon>
+  </mat-form-field>
 
-      <div class="field-group">
-        <label>Currency</label>
-        <select>
-          <option>{{ data.currency }}</option>
-        </select>
-      </div>
-    </div>
+  <mat-form-field appearance="fill" class="custom-field">
+    <mat-label>Currency</mat-label>
+    <!-- <mat-select [value]="data.currency">
+      @for (curr of data.currency; track curr) {
+        <mat-option [value]="curr">{{ curr }}</mat-option>
+      }
+    </mat-select> -->
+  </mat-form-field>
+</div>
 
     <!-- Aggregated -->
     <div class="aggregated-card">
-      <div class="card-header">
-        <label>Transaction Total (Aggregated)</label>
-        <span class="auto-sum-tag">AUTO-SUMMED</span>
-      </div>
+  <div class="card-header">
+    <label>Transaction Total (Aggregated)</label>
+    <span class="auto-sum-tag">AUTO-SUMMED</span>
+  </div>
 
-      <div class="amount">
-        {{ data.totalAmount | currency:'USD':'symbol':'1.2-2' }}
-      </div>
+  <div class="amount">
+    {{ data.totalAmount | currency: data.currency :'symbol':'1.0-0' }}
+  </div>
 
-      <div class="doc-breakdown">
-        @for (page of data.pages; track page; let i = $index) {
-        @if (data.pages && data.pages.length > 0) {
-  <span>
-    {{ (data.totalAmount / data.pages.length) | currency:'USD' }}
-  </span>
-} @else {
-  <span>{{ data.totalAmount | currency:'USD' }}</span>
-}
-        }
+  <div class="doc-breakdown">
+    @for (page of data.pages; track $index) {
+      <div class="doc-item">
+        <span>Doc {{ $index + 1 }}:</span>
+        <strong>{{ (data.totalAmount) | currency: data.currency :'symbol':'1.0-0' }}</strong>
       </div>
-    </div>
+    }
+  </div>
+</div>
 
     <!-- Category -->
     <div class="field-group">

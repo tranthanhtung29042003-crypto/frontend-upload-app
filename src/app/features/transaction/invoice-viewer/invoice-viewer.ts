@@ -25,17 +25,28 @@ export class InvoiceViewer {
     }
   }
 
-  // ✅ FIX LỖI: thêm function này
+fixDriveLink(url: string): string {
+  if (!url) return '';
+
+  // Regex này cực kỳ mạnh, nó sẽ lấy chuỗi ID (25-33 ký tự) từ bất kỳ link Drive nào
+  const match = url.match(/[-\w]{25,}/);
+  
+  if (match) {
+    const fileId = match[0];
+    // Sử dụng endpoint chuẩn của Google để nhúng ảnh
+    return `https://drive.google.com/uc?export=view&id=${fileId}`;
+  }
+
+  return url;
+}
   retryPage() {
     const page = this.currentPage;
     if (!page) return;
 
     console.log('Retry page:', this.activeIndex);
 
-    // 👉 set trạng thái loading
-    page.status = 'processing';
+   
 
-    // 👉 mock call API
     setTimeout(() => {
       // giả lập success
       page.status = 'success';

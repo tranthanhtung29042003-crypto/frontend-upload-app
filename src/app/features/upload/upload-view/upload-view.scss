@@ -24,51 +24,100 @@
   }
 
   .curations-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); // Chia đều 4 cột
-    gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 16px;
+  margin-top: 20px;
+}
+
+ .curation-card {
+      display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    background: #fff;
+    border-radius: 12px;
+    border: 1px solid #e0e0e0;
+    transition: all 0.2s ease-in-out;
+    justify-content: space-between;
+
+  // Trạng thái THÀNH CÔNG
+  &.is-success {
+    &:hover { border-color: #4caf50; box-shadow: 0 4px 12px rgba(76, 175, 80, 0.1); }
+    .file-icon { color: #4caf50; }
+    .amount-text { color: #2e7d32; font-weight: 600; }
   }
 
-  .curation-card {
-    background-color: #f1f3f4; // Màu nền xám nhạt như hình
-    border-radius: 20px;
-    padding: 20px;
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    transition: background-color 0.2s;
-    cursor: pointer;
-
-    &:hover {
-      background-color: #e8eaed;
+  // Trạng thái LỖI (Màu đỏ rực rỡ)
+  &.is-error {
+    background-color: #fff5f5; // Nền hồng nhạt
+    border-color: #ffcdd2;     // Viền đỏ nhạt
+    
+    &:hover { 
+      border-color: #f44336; 
+      box-shadow: 0 4px 12px rgba(244, 67, 54, 0.15); 
     }
 
-    .file-icon {
-      width: 40px;
-      height: 40px;
-      background: #ffffff;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      
-      mat-icon {
-        color: #bdc1c6; // Màu icon xám nhạt
-        font-size: 20px;
-      }
-    }
+    .file-icon { color: #f44336; } // Icon màu đỏ
+    
+    .file-name { color: #b71c1c; } // Tên file đỏ đậm
 
-    .file-skeleton {
-      flex: 1;
-      .line {
-        height: 8px;
-        background-color: #e8eaed;
-        border-radius: 4px;
-        margin-bottom: 6px;
-        
-        &.long { width: 80%; }
-        &.short { width: 40%; margin-bottom: 0; }
-      }
+    .text-error {
+      color: #d32f2f;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
     }
   }
 }
+
+/* Hiệu ứng nhấp nháy cho Skeleton */
+.skeleton {
+  .line {
+    background: #f0f0f0;
+    height: 10px;
+    margin-bottom: 8px;
+    border-radius: 4px;
+    &.long { width: 100px; }
+    &.short { width: 60px; }
+  }
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.5; }
+  100% { opacity: 1; }
+}
+}
+.curation-card {
+  // Style cũ của bạn...
+  border: 1px solid #eee;
+  transition: all 0.3s ease;
+
+  &.is-error {
+    border-color: #ffcdd2; // Màu viền đỏ nhạt
+    background-color: #fffbfa; // Nền đỏ cực nhẹ
+  }
+}
+
+.file-icon {
+  &.success { color: #4caf50; }
+  &.error { color: #f44336; } // Màu đỏ cho icon lỗi
+}
+
+.text-error {
+  color: #f44336; // Màu đỏ cho dòng chữ "Upload Error"
+  font-weight: 500;
+  font-size: 0.85rem;
+}
+
+// Hiệu ứng rung nhẹ khi báo lỗi (tùy chọn)
+.is-error {
+  animation: shake 0.4s ease-in-out;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  75% { transform: translateX(4px); }}

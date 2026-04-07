@@ -11,6 +11,18 @@ $shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
 $text-dark: #1e293b;
 $text-light: #64748b;
 $blue-primary: #435ebe;
+$text-main: #1e293b;
+$text-muted: #64748b;
+$bg-input: #f8fafc;
+$border-color: #e2e8f0;
+$text-muted: #64748b;
+$dark-blue: #1a237e;
+$bg-light: #f8fafc;
+$text-primary: #1a237e;
+$text-secondary: #5f6368;
+$shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+$shadow-lg: 0 10px 15px -3px rgba(45, 70, 185, 0.1);
+$shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
 
 @mixin card-style {
   background: $white;
@@ -18,4 +30,9 @@ $blue-primary: #435ebe;
   border: 1px solid #E2E8F0;
   box-shadow: $shadow-sm;
   padding: 24px;
+}
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

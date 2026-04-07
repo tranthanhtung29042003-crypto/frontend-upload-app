@@ -9,7 +9,15 @@
   flex-direction: column;
   justify-content: flex-start;
   padding: 24px;
-
+.logo-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 3rem;
+    .mini-logo { background: #2d46b9; color: white; padding: 5px 8px; border-radius: 6px; }
+    .brand-name { font-weight: 700; color: #1e293b; font-size: 1.2rem; }
+  }
   .sidebar-brand {
     display: flex;
     align-items: center;
@@ -21,27 +29,44 @@
   }
 
   .nav-link {
-    display: block;
-    padding: 12px;
-    color: $text-muted;
-    text-decoration: none;
-    font-weight: 500;
-    border-radius: $radius;
-    margin-bottom: 4px;
-    .nav-item{
-        display: flex;
-        flex-direction:row;
-        justify-content: space-between;
-    .nav-content{
-        font-size: large;
-        font-weight: 800;
-    }
-    }
+  display: block;
+  padding: 12px;
+  color: $text-muted;
+  text-decoration: none;
+  font-weight: 500;
+  border-radius: $radius;
+  margin-bottom: 6px;
+  transition: all 0.2s ease;
 
-    &.active {
-      background: rgba($primary-color, 0.08);
+  .nav-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .nav-content {
+      font-size: 15px;
+      font-weight: 600;
+    }
+  }
+
+  &:hover {
+    background: rgba($primary-color, 0.05);
+  }
+
+  &.active {
+    background: rgba($primary-color, 0.1);
+    color: $primary-color;
+    font-weight: 700;
+
+    border-left: 4px solid $primary-color; // 🔥 nhìn rõ hơn
+
+    .nav-content {
       color: $primary-color;
     }
 
+    mat-icon {
+      color: $primary-color;
+    }
   }
+}
 }

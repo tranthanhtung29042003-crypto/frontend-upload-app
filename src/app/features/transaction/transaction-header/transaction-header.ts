@@ -10,10 +10,7 @@ import { CommonModule } from '@angular/common';
 })
 export class TransactionHeader {
   // Nhận ID từ cha
-  @Input() id: string = '';
-  
-  // Nhận độ tin cậy AI
-  @Input() confidence: number = 0;
+  @Input() transaction_id: number | string = '';
 
   // Nhận số lượng hóa đơn (giả sử bạn muốn truyền thêm count)
   @Input() invoiceCount: number = 0;

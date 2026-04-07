@@ -11,12 +11,12 @@
 
     <!-- Document -->
     <div class="document-frame">
-      <img 
-        [src]="currentPage?.imageUrl" 
-        [class.is-blur]="currentPage?.status === 'error'" 
-        alt="Invoice"
-      />
-
+     <img 
+  [src]="fixDriveLink(currentPage?.imageUrl || '')" 
+  referrerpolicy="no-referrer"
+  crossorigin="anonymous"
+  [class.is-blur]="currentPage?.status === 'error'" 
+/>
       @if (currentPage?.status === 'error') {
         <div class="error-overlay">
           <div class="error-content">
@@ -46,7 +46,7 @@
       [class.error-border]="page.status === 'error'"
       (click)="changePage(i)"
     >
-      <img [src]="page.imageUrl" alt="thumbnail" />
+      <img [src]="fixDriveLink(page.imageUrl)" />
 
       @if (page.status === 'error') {
         <div class="status-dot">!</div>

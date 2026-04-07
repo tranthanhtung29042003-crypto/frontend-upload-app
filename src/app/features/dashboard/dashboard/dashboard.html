@@ -4,14 +4,13 @@
 
   <main class="main-content">
 
-
     <div class="stats-grid">
       <div class="stat-card green-border">
         <p class="label">Tổng số hóa đơn được</p>
         <div class="card-content">
           <div class="value-group">
-            <span class="value">1,284</span>
-            <span class="badge up">+12%</span>
+            <span class="value">{{ invoiceCount }}</span>
+            <!-- <span class="badge up">+12%</span> -->
           </div>
           <div class="icon-box blue">
             <mat-icon>description</mat-icon>
@@ -24,7 +23,7 @@
         <p class="label">Tổng số tiền hóa đơn</p>
         <div class="card-content">
           <div class="value-group">
-            <span class="value">1,284</span>
+            <span class="value">{{ transactionCount }}</span>
             
           </div>
           <div class="icon-box blue">
@@ -38,7 +37,7 @@
         <p class="label">Tổng số tiền chi tháng này </p>
         <div class="card-content">
           <div class="value-group">
-            <span class="value">1,284</span>
+            <span class="value">{{ totalAmount }}</span>
             
           </div>
           <div class="icon-box blue">
@@ -52,7 +51,7 @@
         <p class="label">Tổng số hóa đơn bị tải lỗi</p>
         <div class="card-content">
           <div class="value-group">
-            <span class="value">1,284</span>
+            <span class="value">{{ totalToday }}</span>
             
           </div>
           <div class="icon-box red">

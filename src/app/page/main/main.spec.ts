@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { UploadDropzone } from './upload-dropzone';
+import { Main } from './main';
 
-describe('UploadDropzone', () => {
-  let component: UploadDropzone;
-  let fixture: ComponentFixture<UploadDropzone>;
+describe('Main', () => {
+  let component: Main;
+  let fixture: ComponentFixture<Main>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [UploadDropzone],
+      imports: [Main],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(UploadDropzone);
+    fixture = TestBed.createComponent(Main);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

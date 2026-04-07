@@ -1,15 +1,12 @@
 <div class="header-content">
   <div class="title-row">
     <h1>Review Transaction</h1>
-    <span class="id-pill">ID: {{ id }}</span>
+    <span class="id-pill">ID: {{ transaction_id }}</span>
   </div>
   
   <div class="batch-info">
     <span class="invoice-count">INVOICES IN TRANSACTION ({{ invoiceCount }})</span>
     
-    <div class="confidence-badge" [class.low-confidence]="confidence < 80">
-      <span class="icon">●</span> 
-      Batch Confidence: <strong>{{ confidence }}%</strong>
-    </div>
+  
   </div>
 </div>

@@ -1,0 +1,11 @@
+.app-container {
+display: flex;
+  flex-direction: column; // Xếp logo và card theo cột
+  justify-content: center; // Căn giữa theo chiều dọc
+  align-items: center;     // Căn giữa theo chiều ngang
+  min-height: 100vh;       // Quan trọng: Phải có chiều cao này mới căn giữa dọc được
+  width: 100%;
+  background: radial-gradient(circle at center, #ffffff 0%, #f0f4ff 100%);
+  padding: 20px;
+  box-sizing: border-box;
+}

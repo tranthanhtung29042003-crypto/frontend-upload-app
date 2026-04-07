@@ -1,16 +1,27 @@
+export interface InvoiceItem {
+  item_name: string;
+  quantity: number;
+  unit_price: number;
+  amount: number;
+}
+
+export type InvoiceStatus = 'success' | 'error' ;
+
 export interface InvoiceImg {
-  id: string;
   imageUrl: string;
-  status: 'success' | 'error' | 'processing';
+  status: InvoiceStatus;
   errorMessage?: string;
+  items: InvoiceItem[];
 }
 
 export interface Transaction {
   id: string;
-  confidence: number;
+  name: string;
+
+  pages: InvoiceImg[];
+
   vendor: string;
+  totalAmount: number;
   postingDate: string;
   currency: string;
-  totalAmount: number;
-  pages: InvoiceImg[]; // Thay vì chỉ mảng string, ta dùng mảng Object
 }

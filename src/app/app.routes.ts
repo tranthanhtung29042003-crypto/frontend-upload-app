@@ -1,24 +1,39 @@
 import { Routes } from '@angular/router';
-import { AuthGuard } from './core/guards/auth-guard';
+import { authGuard } from './core/guards/auth-guard';
+import { Main } from './page/main/main';
+import { Auth } from './page/auth/auth';
 
 export const routes: Routes = [
 
-  // AUTH
+  // AUTH LAYOUT (NO SIDEBAR)
   {
-    path: 'login',
-    loadComponent: () =>
-      import('./features/auth/login/login').then(m => m.Login)
-  },
-  {
-    path: 'login-success',
-    loadComponent: () =>
-      import('./features/auth/login-success/login-success').then(m => m.LoginSuccess)
+    path: 'auth',
+    component: Auth,
+    children: [
+      {
+        path: 'login',
+        loadComponent: () =>
+          import('./features/auth/login/login').then(m => m.Login)
+      },
+      {
+        path: 'login-loading',
+        loadComponent: () =>
+          import('./features/auth/login-loading/login-loading').then(m => m.LoginLoading)
+      },
+    
+      {
+        path: '',
+        redirectTo: 'login',
+        pathMatch: 'full'
+      }
+    ]
   },
 
-  // MAIN APP
+  // MAIN APP (CÓ SIDEBAR)
   {
     path: '',
-    canActivate: [AuthGuard],
+    component: Main,
+    canActivate: [authGuard], // 🔥 chỉ để ở đây
     children: [
       {
         path: 'dashboard',
@@ -35,21 +50,22 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./features/invoice/invoice-list/invoice-list').then(m => m.InvoiceList)
       },
-
- {
-        path: 'detail',
+      {
+        path: 'detail/:transaction_id',
         loadComponent: () =>
           import('./features/transaction/transaction-review/transaction-review').then(m => m.TransactionReview)
       },
-
       {
         path: '',
         redirectTo: 'dashboard',
         pathMatch: 'full'
       }
-
-
-
     ]
-  }
+  },
+
+  // fallback
+  // {
+  //   path: '**',
+  //   redirectTo: 'auth/login'
+  // }
 ];

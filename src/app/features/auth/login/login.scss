@@ -1,0 +1,105 @@
+@use "../../../../styles/variables" as *;
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  background-color: $bg-app;
+  font-family: 'Inter', sans-serif; // Bạn nên import font này từ Google Fonts
+}
+
+.login-card {
+  text-align: center;
+  width: 100%;
+  max-width: 450px;
+  padding: 2rem;
+
+  .header {
+    margin-bottom: 3rem;
+.logo-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 3rem;
+    .mini-logo { background: #2d46b9; color: white; padding: 5px 8px; border-radius: 6px; }
+    .brand-name { font-weight: 700; color: #1e293b; font-size: 1.2rem; }
+  }
+    
+
+    .title {
+      color: $text-primary;
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.5px;
+    }
+
+    .subtitle {
+      color: $text-secondary;
+      font-size: 0.95rem;
+    }
+  }
+
+  .auth-box {
+    background: $white;
+    padding: 100px 40px; // Tạo khoảng trống lớn như trong ảnh
+    border-radius: 40px;
+    box-shadow: $shadow;
+    margin-bottom: 3rem;
+
+    .google-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      padding: 12px;
+      background: $white;
+      border: 2px solid $border-color;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.3s;
+
+      &:hover { background: #f8f9fa; }
+
+      .google-icon {
+        width: 24px;
+        height: 24px;
+        margin-right: 12px;
+      }
+
+      span {
+        font-size: 1.1rem;
+        font-weight: 500;
+        color: #3c4043;
+      }
+    }
+  }
+
+  .footer {
+    .trust-text {
+      font-size: 0.75rem;
+      color: #9aa0a6;
+      letter-spacing: 1px;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+    }
+
+    .pagination-dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+
+      .dot {
+        width: 12px;
+        height: 12px;
+        background-color: #bdc1c6;
+        border-radius: 2px; // Bo góc nhẹ cho hình vuông
+
+        &.active {
+          background-color: #d1d5db;
+        }
+      }
+    }
+  }
+}

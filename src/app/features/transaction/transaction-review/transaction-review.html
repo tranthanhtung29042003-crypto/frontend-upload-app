@@ -1,23 +1,34 @@
 <div class="transaction-layout">
-  
   <div class="wrapper">
+
+    @if (loading()) {
+      <div class="loader-container">
+        <span>Loading...</span>
+      </div>
+    }
     
-    <app-transaction-header 
-      [id]="mockTransaction.id" 
-      [confidence]="mockTransaction.confidence">
-    </app-transaction-header>
+    @else if (data(); as t) {
+      <app-transaction-header 
+        [transaction_id]="t.id"
+        [invoiceCount]="invoiceCount()"> </app-transaction-header>
 
-    <div class="main-content">
-      <div class="viewer-container">
-        <app-invoice-viewer [pages]="mockTransaction.pages"></app-invoice-viewer>
-      </div>
-
-      <div class="data-container">
-        <div class="form-scroll-area">
-          <app-transaction-form [data]="mockTransaction"></app-transaction-form>
+      <div class="main-content">
+        <div class="viewer-container">
+          <app-invoice-viewer [pages]="t.pages"></app-invoice-viewer>
         </div>
-        <app-transaction-footer></app-transaction-footer>
-      </div>
-    </div>
 
-  </div> </div>
+        <div class="data-container">
+          <div class="form-scroll-area">
+            <app-transaction-form [data]="t"></app-transaction-form>
+          </div>
+          <app-transaction-footer></app-transaction-footer>
+        </div>
+      </div>
+    }
+
+    @else {
+      <div class="empty-state">Không tìm thấy dữ liệu.</div>
+    }
+
+  </div>
+</div>

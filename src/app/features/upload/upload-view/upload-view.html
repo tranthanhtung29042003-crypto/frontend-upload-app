@@ -4,29 +4,75 @@
       <h3>Recent Curations</h3>
       <p>Quickly re-access your latest processed documents</p>
     </div>
-    <a href="#" class="view-history">VIEW HISTORY</a>
+    <a href="javascript:void(0)" class="view-history">VIEW HISTORY</a>
   </div>
 
   <div class="curations-grid">
-    <div class="curation-card">
-      <div class="file-icon">
-        <mat-icon>description</mat-icon>
-      </div>
-      <div class="file-skeleton">
-        <div class="line long"></div>
-        <div class="line short"></div>
-      </div>
-    </div>
 
-    <div class="curation-card">
-      <div class="file-icon">
-        <mat-icon>description</mat-icon>
+    @if (!uploadResults || uploadResults.length === 0) {
+      <div class="no-data-placeholder">
+        <mat-icon>hourglass_empty</mat-icon>
+        <p>Wait for processing...</p>
       </div>
-      <div class="file-skeleton">
-        <div class="line long"></div>
-        <div class="line short"></div>
+     
+    }
+
+    @for (item of uploadResults; track $index) {
+
+      <div class="curation-card"
+           [class.is-success]="item.status?.toUpperCase() === 'OK'"
+           [class.is-error]="item.status?.toUpperCase() !== 'OK'"
+           (click)="handleErrorClick(item)">
+
+        <div class="file-icon">
+          <mat-icon>
+            {{ item.status?.toUpperCase() === 'OK' ? 'task_alt' : 'report_problem' }}
+          </mat-icon>
+        </div>
+
+        <div class="file-info">
+
+          <div class="file-name" [title]="item.file">
+            {{ item.file || 'Unknown File' }}
+          </div>
+
+          <div class="file-status">
+
+            @if (item.status?.toUpperCase() === 'OK') {
+
+              <div class="amount-text">
+                {{ item.total | currency:'VND':'symbol':'1.0-0' }}
+              </div>
+
+              <div class="vendor">
+                {{ item.vendor_name }}
+              </div>
+
+            } @else {
+
+              <span class="text-error">
+                NOT AN INVOICE
+              </span>
+
+            }
+
+          </div>
+
+        </div>
+
+        <div class="action-group">
+  @if (item.image_link) {
+    <a [routerLink]="['detail', item.invoice_id]" 
+       class="view-link"
+       title="View Details">
+      <mat-icon>visibility</mat-icon>
+    </a>
+  }
+</div>
+
       </div>
-    </div>
-    
-    </div>
+
+    }
+
+  </div>
 </div>

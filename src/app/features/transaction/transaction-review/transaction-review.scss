@@ -2,34 +2,33 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 100vh;
-  background: #cbd5e1; // Màu nền bên ngoài cùng (vùng trống 2 bên)
+  height: 90vh;       /* Cố định chiều cao */
+  background: #cbd5e1; 
+  align-items: center;
+  border-radius: 20px;
   overflow: hidden;
-
-  // Đây là phần quan trọng để đưa nội dung vào giữa
   .wrapper {
     width: 100%;
-    max-width: 2000px; // Giới hạn độ rộng tối đa để không bị quá loãng trên màn to
-    height: 100%;
-    margin: 0 auto;    // Căn giữa toàn bộ khối này
-    background: white; // Màu nền của vùng làm việc chính
+    max-width: 2000px;
+    height: 100%;      /* Kế thừa 100% của 90vh */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;  /* Chặn scroll ở đây */
+    background: white;
     display: flex;
     flex-direction: column;
     box-shadow: 0 0 50px rgba(0,0,0,0.1); // Tạo hiệu ứng nổi khối
   }
 
   .main-content {
-    display: grid;
+display: grid;
     grid-template-columns: 1.2fr 0.8fr; 
-    flex: 1; 
-    overflow: hidden;
-    background: #f1f5f9;
-
-    min-height: 0;
+    flex: 1;           /* Tự động lấp đầy phần còn lại của wrapper */
+    min-height: 0;     /* Cần thiết để flex/grid con không bị tràn */
+    overflow: hidden;  /* Quan trọng: Để con nó tự scroll chứ cha không scroll */
+    background: #f1f5f9
   }
-}
-
-.viewer-container {
+  .viewer-container {
   background: #1e293b; 
   display: flex;
   justify-content: center;
@@ -39,15 +38,19 @@
   min-height: 0;
 }
 
+}
+
+
 .data-container {
+  flex: 0.8; // Chiếm khoảng 40% chiều rộng (có thể điều chỉnh)
   background: white;
   display: flex;
   flex-direction: column;
   padding: 24px;
-  overflow: hidden;
-  min-height: 0;
+  overflow: hidden; // Ngăn cuộn data-container chính
+
   .form-scroll-area {
-    flex: 1;
-    overflow-y: auto;
+    flex: 1; // Chiếm toàn bộ không gian còn lại
+    overflow-y: auto; // Bật cuộn chỉ cho khu vực form nhập liệu
   }
 }

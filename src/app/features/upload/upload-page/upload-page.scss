@@ -14,7 +14,34 @@
     gap: 30px;
   }
 }
+.pending-files {
+  margin-top: 20px;
+  padding: 15px;
+  background: rgba(98, 0, 238, 0.05);
+  border-radius: 8px;
+  border: 1px dashed #6200ee;
 
+  p {
+    margin-bottom: 10px;
+    font-weight: 500;
+  }
+
+  button {
+    width: 100%;
+    padding: 10px;
+    font-weight: bold;
+    letter-spacing: 1px;
+  }
+}
+
+.spinning {
+  animation: rotate 2s linear infinite;
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
 // Vùng kéo thả file
 .dropzone {
   background: white;
@@ -83,6 +110,129 @@
       mat-icon { color: #3f51b5; font-size: 20px; }
       strong { font-size: 13px; display: block; }
       p { font-size: 11px; color: #5f6368; margin: 0; }
+    }
+  }
+}
+.pending-files {
+  margin-top: 20px;
+  padding: 15px;
+  background: rgba(var(--mat-primary-600), 0.05);
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  text-align: left; /* Căn lề trái cho danh sách file */
+
+  .file-list-preview {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0;
+    max-height: 150px; // Giới hạn chiều cao
+    overflow-y: auto; // Hiện thanh cuộn nếu quá nhiều file
+
+    li {
+      display: flex;
+      align-items: center;
+      font-size: 0.9rem;
+      padding: 4px 0;
+      color: #555;
+
+      mat-icon {
+        font-size: 18px;
+        width: 18px;
+        height: 18px;
+        margin-right: 8px;
+        color: #757575;
+      }
+
+      .file-name {
+        flex: 1;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .file-size {
+        font-size: 0.8rem;
+        color: #999;
+        margin-left: 10px;
+      }
+    }
+  }
+
+  .action-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+    justify-content: center;
+  }
+}
+.pending-files {
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 16px;
+  margin-top: 20px;
+  border: 1px solid #dee2e6;
+
+  .selection-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+
+    p { margin: 0; font-size: 14px; }
+    .clear-all { color: #f44336; text-decoration: none; font-size: 12px; font-weight: 500; }
+  }
+
+  .file-list-preview {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 200px;
+    overflow-y: auto;
+
+    li {
+      display: flex;
+      align-items: center;
+      padding: 8px;
+      background: #fff;
+      margin-bottom: 4px;
+      border-radius: 6px;
+      border: 1px solid #efefef;
+
+      .file-icon { color: #6c757d; margin-right: 8px; font-size: 20px; }
+      
+      .file-name {
+        flex: 1;
+        font-size: 13px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        color: #333;
+      }
+
+      .remove-btn {
+        width: 32px;
+        height: 32px;
+        line-height: 32px;
+        mat-icon { font-size: 18px; }
+      }
+
+      &:hover {
+        background: #fff5f5;
+        border-color: #ffcdd2;
+      }
+    }
+  }
+
+  .action-buttons {
+    margin-top: 16px;
+    display: flex;
+    justify-content: center;
+    
+    .extract-btn {
+      width: 100%;
+      padding: 8px;
+      font-weight: 600;
+      letter-spacing: 1px;
     }
   }
 }
