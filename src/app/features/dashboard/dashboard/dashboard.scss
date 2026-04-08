@@ -1,18 +1,23 @@
 @use '../../../../styles/variables' as *;
+// File: dashboard.component.scss
+
 .dashboard-wrapper {
   display: flex;
-  height: 100%;
+  height: 100vh;    // BẮT BUỘC: Phải dùng height thay vì min-height ở đây
+  width: 100%;
+  overflow: hidden; // Ngăn không cho cả trang cuộn (chỉ cuộn bên trong content)
   background-color: $white;
 }
-
-
 
 .main-content {
   flex: 1;
   padding: 32px;
-
-
- 
+  height: 100vh;    // Chiều cao bằng đúng màn hình
+  overflow-y: auto; // KÍCH HOẠT CUỘN DỌC TẠI ĐÂY
+  
+  display: flex;
+  flex-direction: column; 
+  gap: 24px;
 }
 
 .stats-grid {

@@ -100,6 +100,14 @@
     background-color: #fffbfa; // Nền đỏ cực nhẹ
   }
 }
+.is-processing mat-icon {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
 
 .file-icon {
   &.success { color: #4caf50; }

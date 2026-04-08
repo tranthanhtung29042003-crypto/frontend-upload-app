@@ -1,0 +1,67 @@
+<main class="main-card">
+  <div class="section-label">DOCUMENT DETAILS</div>
+
+  <div class="form-body">
+    <div class="input-group">
+      <label>VENDOR</label>
+      <div class="input-container">
+        <input type="text" [value]="invoice().vendor_name" readonly>
+        <span class="check-icon-circle">✓</span>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-group">
+        <label>INVOICE NUMBER</label>
+        <div class="input-container">
+ <input type="text" [value]="invoice().invoice_number" readonly>
+        </div>
+       
+      </div>
+      <div class="input-group">
+        <label>CATEGORY</label>
+        <div class="input-container">
+<input type="text" [value]="invoice().category" readonly>
+        </div>
+        
+       
+      </div>
+    </div>
+
+    <div class="total-amount-box">
+      <label>TOTAL AMOUNT</label>
+      <div class="amount-display">
+        <span class="value">{{ invoice().total | number }}</span>
+        <span class="currency">VND</span>
+      </div>
+    </div>
+
+    <div class="line-items-section">
+      <label>ITEMS</label>
+      <table class="items-table">
+        <thead>
+          <tr>
+            <th>ITEM</th>
+            <th class="text-center">QTY</th>
+            <th class="text-right">UNIT PRICE</th>
+            <th class="text-right">AMOUNT</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (item of invoice().items; track $index) {
+          <tr>
+            <td class="item-name">{{ item.item_name }}</td>
+            <td class="text-center">{{ item.quantity }}</td>
+            <td class="text-right">{{ item.unit_price | number }}</td>
+            <td class="text-right font-bold">{{ item.amount | number }}</td>
+          </tr>
+          } @empty {
+            <tr>
+              <td colspan="4" class="text-center">No items found.</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</main>

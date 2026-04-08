@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TransactionReview } from './transaction-review';
+import { DetailHeader } from './detail-header';
 
-describe('TransactionReview', () => {
-  let component: TransactionReview;
-  let fixture: ComponentFixture<TransactionReview>;
+describe('DetailHeader', () => {
+  let component: DetailHeader;
+  let fixture: ComponentFixture<DetailHeader>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TransactionReview],
+      imports: [DetailHeader],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(TransactionReview);
+    fixture = TestBed.createComponent(DetailHeader);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

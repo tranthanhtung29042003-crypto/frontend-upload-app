@@ -1,0 +1,165 @@
+ @use '../../../../styles/variables' as *;
+
+
+// --- Main Styles ---
+.transaction-page {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 0 1.5rem;
+  font-family: 'Inter', -apple-system, sans-serif;
+  color: $text-main;
+  background-color: $white;
+  border-radius: 15px;
+
+  // Header Section
+ 
+
+  // Navigation Bar
+  .navigation-bar {
+    @include flex-between;
+    margin-bottom: 1.2rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: $text-muted;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+
+    .invoice-counter {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+
+      .nav-btns {
+        display: flex;
+        gap: 4px;
+
+        button {
+          background: #666;
+          border: 1px solid $border-color;
+          color: #e3f2fd;
+          border-radius: 4px;
+          width: 28px;
+          height: 24px;
+          cursor: pointer;
+          transition: all 0.2s;
+
+          &:hover:not(:disabled) {
+            background: $input-bg;
+            color: $primary-color;
+          }
+
+          &:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+          }
+        }
+      }
+    }
+
+    .quick-links {
+      display: flex;
+      gap: 20px;
+
+      a {
+        text-decoration: none;
+        color: $primary-color;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+
+        &:hover {
+          text-decoration: underline;
+        }
+
+        i { font-style: normal; }
+      }
+    }
+  }
+
+  
+
+  // Action Footer
+  .action-footer {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 2.5rem;
+    margin-top: 2.5rem;
+
+    .btn-discard {
+      background: none;
+      border: none;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #666;
+      cursor: pointer;
+      &:hover { color: $text-main; }
+    }
+
+    .btn-save {
+      background: $primary-dark;
+      color: $white;
+      padding: 12px 28px;
+      border-radius: 10px;
+      border: none;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 4px 14px rgba(43, 58, 139, 0.3);
+      transition: transform 0.2s, background 0.2s;
+
+      &:hover {
+        background: #1a237e;
+        transform: translateY(-1px);
+      }
+
+      &:active {
+        transform: translateY(0);
+      }
+    }
+  }
+
+  .loading-state {
+    text-align: center;
+    padding: 100px;
+    color: $text-muted;
+    font-style: italic;
+  }
+}
+
+
+.section-label {
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: #999;
+  margin-bottom: 20px;
+}
+
+
+
+.check-icon-circle {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #e3f2fd;
+  color: #1976d2;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 0.7rem;
+}
+// --- Responsive Tweak ---
+@media (max-width: 600px) {
+  .transaction-page {
+    .main-card { padding: 1.5rem; }
+    .header-section { flex-direction: column; align-items: flex-start; gap: 10px; }
+    .form-body .row { grid-template-columns: 1fr; }
+    .action-footer { flex-direction: column-reverse; gap: 1rem; width: 100%; .btn-save { width: 100%; justify-content: center; } }
+  }
+}

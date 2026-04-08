@@ -15,6 +15,8 @@ import { Infomation } from '../../../services/infomation';
 export class Dashboard implements OnInit{
 
   invoiceCount: number = 0;
+  errorInvoiceCount: number = 0;
+  
   transactionCount: number = 0;
   totalAmount: number = 0;
   totalToday: number = 0;
@@ -35,6 +37,12 @@ export class Dashboard implements OnInit{
      this.cdr.detectChanges();
     });
 
+     this.infomationService.getErrorInvoiceCount().subscribe((res: any) => {
+       console.log(res)
+     this.errorInvoiceCount = res.error_invoice_count;
+     this.cdr.detectChanges();
+    });
+
     this.infomationService.getTransactionCount().subscribe((res: any) => {
        console.log(res)
       this.transactionCount = res.transaction_count;
@@ -51,6 +59,12 @@ export class Dashboard implements OnInit{
        console.log(res)
       this.totalToday = res.total_invoice_amount;
       this.cdr.detectChanges();
+    });
+
+     this.infomationService.getNewInvoiceLimit().subscribe((res: any) => {
+       console.log("transactionlimutj",res)
+    
+     this.cdr.detectChanges();
     });
   }
 }

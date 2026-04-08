@@ -1,24 +1,21 @@
 @use '../../../styles/variables' as *;
 
-.app-container{
- 
-    margin: 0 auto; /* Centers the whole container on the page */
-    
-    display: grid;
-    /* 'fr' units are often smoother than percentages for grids */
-    grid-template-columns: 1fr 6fr; 
-    
-    /* Ensures the container fills the screen height if needed */
-
+.app-container {
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 6fr; 
+  min-height: 100vh; /* Luôn cao ít nhất bằng màn hình */
   background-color: $bg-app;
- 
+  overflow-y: visible; /* Cho phép cuộn toàn bộ trang */
 }
 
-.main-content {
-  flex: 1; /* chiếm toàn bộ phần còn lại */
+.app-container {
+  margin: 0 auto;
   display: grid;
-  grid-template-rows: 1fr 15fr;
-  
+  grid-template-columns: 1fr 6fr; 
+  min-height: 100vh; /* Luôn cao ít nhất bằng màn hình */
+  background-color: $bg-app;
+  overflow-y: auto; /* Cho phép cuộn toàn bộ trang */
 }
 
 

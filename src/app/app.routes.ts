@@ -53,7 +53,7 @@ export const routes: Routes = [
       {
         path: 'detail/:transaction_id',
         loadComponent: () =>
-          import('./features/transaction/transaction-review/transaction-review').then(m => m.TransactionReview)
+          import('./features/transaction/detail/detail').then(m => m.Detail)
       },
       {
         path: '',

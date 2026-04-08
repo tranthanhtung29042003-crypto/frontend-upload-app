@@ -1,0 +1,9 @@
+<header class="header-section">
+    <div class="title-group">
+      <h1>Review Transaction:</h1>
+      <span class="transaction-id">ID: {{ transaction_id }}</span>
+    </div>
+    <div class="status-badge" [class.ok]="status === 'OK'" [class.error]="status === 'ERROR'">
+      <span class="dot">●</span> Status: {{ status || 'Unknown' }}
+    </div>
+  </header>

@@ -13,7 +13,12 @@ export class Infomation {
     withCredentials: true
   });
   }
-  
+    getErrorInvoiceCount(): Observable<any> {
+     return this.http.get('api/getinfo/error-invoice-count/',
+      {
+    withCredentials: true
+  });
+  }
 
   getTransactionCount(): Observable<any> {
     return this.http.get(`api/getinfo/transaction-count/`,
@@ -35,4 +40,14 @@ export class Infomation {
   });
   }
 
+  getInvoiceSumary(): Observable<any>{
+    return this.http.get(`api/invoice_sumary/`,{
+    withCredentials: true
+  });
+  }
+  getNewInvoiceLimit(): Observable<any>{
+    return this.http.get(`api/invoice_newest_limit/`,{
+    withCredentials: true
+  });
+}
 }

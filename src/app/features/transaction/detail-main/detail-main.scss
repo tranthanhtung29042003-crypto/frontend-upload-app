@@ -1,0 +1,218 @@
+@use '../../../../styles/variables' as *;
+
+// Mixin dùng chung cho các phần tiêu đề nhỏ
+@mixin label-style {
+  display: block;
+  margin-bottom: 8px;
+  color: $text-muted;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.main-card {
+  background: $white;
+  border-radius: 16px;
+  padding: 2.5rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(0, 0, 0, 0.02);
+
+  // 1. Error Banner (Cảnh báo lỗi trích xuất)
+  .error-banner {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 2rem;
+    padding: 1rem 1.2rem;
+    background: $error-bg;
+    border-left: 4px solid $error-red;
+    border-radius: 4px;
+
+    .warning-icon { 
+      color: $error-red; 
+      font-size: 1.2rem; 
+    }
+
+    .banner-text {
+      strong { 
+        display: block;
+        margin-bottom: 2px;
+        color: $error-red; 
+        font-size: 0.9rem; 
+      }
+      p { 
+        margin: 0; 
+        color: #7a3a3a;
+        font-size: 0.8rem; 
+        line-height: 1.4; 
+      }
+    }
+  }
+
+  .form-body {
+    .row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .input-group {
+  margin-bottom: 1.5rem;
+
+  label {
+    display: block;
+    margin-bottom: 8px;
+    color: #8c94a3; 
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+  }
+
+  .input-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    input {
+      width: 100%;
+      padding: 12px 16px;
+      padding-right: 40px; // Chừa khoảng trống cho icon bên phải
+      background: #f4f5f7; 
+      border: 1px solid transparent;
+      border-radius: 8px;
+      color: #333;
+      font-size: 0.95rem;
+      font-weight: 700; // Vendor name trong ảnh khá đậm
+      cursor: default;
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    // Tái tạo icon check màu xanh trong vòng tròn như ảnh
+    .check-icon-circle {
+      position: absolute;
+      right: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      
+      width: 16px;
+      height: 16px;
+      background: #1a73e8; // Màu xanh đặc trưng của Google/Nexus
+      color: white;
+      font-size: 10px;
+      border-radius: 50%;
+      font-weight: bold;
+      
+      // Đảm bảo dấu check nằm chính giữa
+      line-height: 1;
+      pointer-events: none; 
+    }
+  }
+}
+
+    .total-amount-box {
+      margin: 20px 0;
+      padding: 1.5rem 1.2rem;
+      background: #f8f9ff;
+      border: 1px solid #eef0f7;
+      border-radius: 12px;
+      
+      label { 
+        @include label-style;
+        color: $primary-color; // Màu xanh làm điểm nhấn
+      }
+      
+      .amount-display {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .value { 
+          font-size: 1.8rem; 
+          font-weight: 800; 
+          color: $primary-color; 
+          letter-spacing: -0.5px;
+        }
+        .currency { 
+          color: #99abb4; 
+          font-weight: 700;
+          font-size: 0.9rem;
+        }
+      }
+    }
+
+    // 4. Line Items Table (Bảng chi tiết hàng hóa)
+    .items-table {
+      width: 100%;
+      margin-top: 1.5rem;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+
+      th {
+        padding: 12px 8px;
+        color: #99abb4;
+        font-size: 0.65rem;
+        font-weight: 800;
+        text-align: left;
+        text-transform: uppercase;
+        border-bottom: 1px solid #eee;
+      }
+
+      td {
+        padding: 14px 8px;
+        border-bottom: 1px solid #f8f9fa;
+        color: $text-main;
+      }
+
+      .item-name { 
+        font-weight: 600; 
+        color: #2c3e50;
+      }
+      
+      .text-center { text-align: center; }
+      .text-right { text-align: right; }
+      .font-bold { font-weight: 700; }
+    }
+
+    // 5. Grouping Logic Box (Phần màu vàng cam dưới cùng)
+    .grouping-logic {
+      display: flex;
+      gap: 16px;
+      margin-top: 2rem;
+      padding: 1.2rem;
+      background: $warning-bg;
+      border-radius: 12px;
+
+      .logic-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 36px;
+        height: 36px;
+        background: $warning-orange;
+        color: $white;
+        border-radius: 8px;
+        font-size: 1.1rem;
+      }
+
+      .logic-content {
+        strong { 
+          display: block;
+          margin-bottom: 4px;
+          color: #5d4037; 
+          font-size: 0.9rem; 
+        }
+        p { 
+          margin: 0; 
+          color: #795548; 
+          font-size: 0.8rem; 
+          line-height: 1.5; 
+        }
+      }
+    }
+  }
+}

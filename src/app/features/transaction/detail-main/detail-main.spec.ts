@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { InvoiceViewer } from './invoice-viewer';
+import { DetailMain } from './detail-main';
 
-describe('InvoiceViewer', () => {
-  let component: InvoiceViewer;
-  let fixture: ComponentFixture<InvoiceViewer>;
+describe('DetailMain', () => {
+  let component: DetailMain;
+  let fixture: ComponentFixture<DetailMain>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [InvoiceViewer],
+      imports: [DetailMain],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(InvoiceViewer);
+    fixture = TestBed.createComponent(DetailMain);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

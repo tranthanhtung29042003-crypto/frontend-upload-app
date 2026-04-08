@@ -14,20 +14,29 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td><strong>Adobe</strong><br><small>Creative Cloud</small></td>
-            <td>Oct 14, 2023</td>
-            <td><span class="tag">SOFTWARE</span></td>
-            <td>$159.99</td>
-            <td><span class="status paid">PAID</span></td>
-          </tr>
-          <tr>
-            <td><strong>Google</strong><br><small>G Cloud Platform</small></td>
-            <td>Oct 12, 2023</td>
-            <td><span class="tag">INFRASTRUCTURE</span></td>
-            <td>$2,410.50</td>
-            <td><span class="status pending">PENDING</span></td>
-          </tr>
+         @for (invoice of recentInvoices(); track invoice.id) {
+        <tr>
+          <td>
+            <strong>{{ invoice.vendor_name }}</strong>
+            <br>
+            <small><a [href]="invoice.image_link" target="_blank">View Image</a></small>
+          </td>
+          <td>{{ formatDate(invoice.created_at) }}</td>
+          <td><span class="tag">{{ invoice.invoice_number }}</span></td>
+          <td>{{ formatCurrency(invoice.total) }}</td>
+          <td>
+  <span class="status" [ngClass]="invoice.status || 'unknown'">
+    {{ invoice.status || 'N/A' }}
+  </span>
+</td>
+        </tr>
+      } @empty {
+        <tr>
+          <td colspan="5" style="text-align: center; padding: 20px;">
+            Không có dữ liệu hóa đơn mới.
+          </td>
+        </tr>
+      }
         </tbody>
       </table>
     </div> 

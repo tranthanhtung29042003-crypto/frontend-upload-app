@@ -1,5 +1,9 @@
 @use '../../../../styles/variables' as *;
 
+.table-container {
+  flex-shrink: 0;      // Ngăn không cho bảng bị co lại quá mức
+  min-height: min-content; 
+  padding-bottom: 50px; // Thêm khoảng trống dưới cùng để không bị sát mép
 .data-table {
   width: 100%;
   border-collapse: collapse;
@@ -10,7 +14,8 @@
   .status {
     font-weight: 700;
     font-size: 0.75rem;
-    &.paid { color: $success; }
-    &.pending { color: $warning; }
+    &.OK { color: $success; }
+    &.ERROR { color: $warning; }
   }
+}
 }

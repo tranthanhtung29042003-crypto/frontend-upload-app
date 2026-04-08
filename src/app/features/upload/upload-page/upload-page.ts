@@ -56,15 +56,31 @@ export class UploadPage {
   // 👇 Hiển thị trước (pending)
   this.uploadResults = this.selectedFiles.map(file => ({
     file: file.name,
-    status: 'PROCESSING'
+  status: 'PROCESSING',
+  vendor: null,
+  total: 0,
+  items: [],
+  error: null,
+  image: null
   }));
 
   this.invoiceService.uploadImvoices(this.selectedFiles).subscribe({
     next: (res: any) => {
       console.log("Dữ liệu server trả về:", res);
-      this.uploadResults = Array.isArray(res.data) ? [...res.data] : [];
-      this.isUploading = false;
-      this.selectedFiles = [];
+      const txId = res.transaction?.transaction_id;
+  this.uploadResults = (res.transaction?.invoices || []).map((inv: any) => ({
+    file: inv.file,
+    status: inv.status, // OK | ERROR
+    vendor: inv.vendor_name || null,
+    total: inv.total || 0,
+    items: inv.items || [],
+    error: inv.message || null,
+      transaction_id: txId,
+    image: inv.image_link || null
+  }));
+  console.log("uploadresul: ",this.uploadResults);
+  this.isUploading = false;
+  this.selectedFiles = [];
     },
     error: () => {
       this.isUploading = false;

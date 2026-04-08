@@ -24,6 +24,24 @@ $shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
 $shadow-lg: 0 10px 15px -3px rgba(45, 70, 185, 0.1);
 $shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
 
+$bg-body: #f8f9fc;
+$white: #ffffff;
+$text-main: #333333;
+$text-muted: #888888;
+$primary-color: #3f51b5;
+$primary-dark: #2b3a8b;
+$error-red: #d32f2f;
+$error-bg: #fdf2f2;
+$warning-orange: #8d6e63;
+$warning-bg: #fdf8f1;
+$border-color: #e1e4e8;
+$input-bg: #f4f6f8;
+
+@mixin flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 @mixin card-style {
   background: $white;
   border-radius: $radius;

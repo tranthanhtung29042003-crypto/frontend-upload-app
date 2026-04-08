@@ -9,27 +9,37 @@
 
   <div class="curations-grid">
 
+    <!-- EMPTY -->
     @if (!uploadResults || uploadResults.length === 0) {
       <div class="no-data-placeholder">
         <mat-icon>hourglass_empty</mat-icon>
         <p>Wait for processing...</p>
       </div>
-     
     }
 
+    <!-- LIST -->
     @for (item of uploadResults; track $index) {
 
       <div class="curation-card"
-           [class.is-success]="item.status?.toUpperCase() === 'OK'"
-           [class.is-error]="item.status?.toUpperCase() !== 'OK'"
-           (click)="handleErrorClick(item)">
+           [class.is-success]="item.status === 'OK'"
+           [class.is-error]="item.status === 'ERROR'"
+           [class.is-processing]="item.status === 'PROCESSING'"
+           (click)="item.status === 'ERROR' && handleErrorClick(item)">
 
+        <!-- ICON -->
         <div class="file-icon">
           <mat-icon>
-            {{ item.status?.toUpperCase() === 'OK' ? 'task_alt' : 'report_problem' }}
+            @if (item.status === 'PROCESSING') {
+              sync
+            } @else if (item.status === 'OK') {
+              task_alt
+            } @else {
+              report_problem
+            }
           </mat-icon>
         </div>
 
+        <!-- INFO -->
         <div class="file-info">
 
           <div class="file-name" [title]="item.file">
@@ -38,37 +48,51 @@
 
           <div class="file-status">
 
-            @if (item.status?.toUpperCase() === 'OK') {
+            <!-- PROCESSING -->
+            @if (item.status === 'PROCESSING') {
+              <span class="text-processing">
+                Processing...
+              </span>
+            }
+
+            <!-- SUCCESS -->
+            @if (item.status === 'OK') {
 
               <div class="amount-text">
-                {{ item.total | currency:'VND':'symbol':'1.0-0' }}
+                {{ item.total | number }} VND
               </div>
 
               <div class="vendor">
-                {{ item.vendor_name }}
+                {{ item.vendor }}
               </div>
 
-            } @else {
+            }
 
+            <!-- ERROR -->
+            @if (item.status === 'ERROR') {
               <span class="text-error">
-                NOT AN INVOICE
+                {{ item.error || 'Processing failed' }}
               </span>
-
             }
 
           </div>
 
         </div>
 
+        <!-- ACTION -->
         <div class="action-group">
-  @if (item.image_link) {
-    <a [routerLink]="['detail', item.invoice_id]" 
-       class="view-link"
-       title="View Details">
-      <mat-icon>visibility</mat-icon>
-    </a>
-  }
-</div>
+
+          <!-- chỉ show khi OK -->
+        
+            <a [routerLink]="['/detail', item.transaction_id]" 
+               class="view-link"
+               title="View Details"
+               (click)="$event.stopPropagation()">
+              <mat-icon>visibility</mat-icon>
+            </a>
+          
+
+        </div>
 
       </div>
 

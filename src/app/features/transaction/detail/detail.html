@@ -1,0 +1,29 @@
+@if (transactionData(); as data) {
+<div class="transaction-page">
+  
+    <app-detail-header transaction_id={{data.transaction_id}}, status={{currentInvoice()?.status}}></app-detail-header>
+  <nav class="navigation-bar">
+    <div class="invoice-counter">
+      INVOICES IN TRANSACTION ({{ currentIndex() + 1 }}/{{ invoices().length }})
+      <div class="nav-btns">
+        <button (click)="prevInvoice()" [disabled]="currentIndex() === 0">❮</button>
+        <button (click)="nextInvoice()" [disabled]="currentIndex() === invoices().length - 1">❯</button>
+      </div>
+    </div>
+    <div class="quick-links">
+      <a [href]="currentInvoice()?.image_link" target="_blank"><i class="icon">👁</i> View Original</a>
+    </div>
+  </nav>
+
+  @if (currentInvoice(); as invoice) {
+    <app-detail-main [invoice]="invoice"></app-detail-main>
+
+
+  }
+<!-- 
+  <footer class="action-footer">
+    <button class="btn-discard">Discard</button>
+    <button class="btn-save">💾 Save Transaction</button>
+  </footer> -->
+</div>
+}
