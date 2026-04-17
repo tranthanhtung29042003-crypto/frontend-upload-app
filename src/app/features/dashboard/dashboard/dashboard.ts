@@ -29,7 +29,10 @@ export class Dashboard implements OnInit{
   ngOnInit(): void {
     this.loadData();
   }
-
+formatVND(value: number): string {
+    if (!value) return '0';
+    return new Intl.NumberFormat('vi-VN').format(value);
+  }
   loadData() {
     this.infomationService.getInvoiceCount().subscribe((res: any) => {
        console.log(res)

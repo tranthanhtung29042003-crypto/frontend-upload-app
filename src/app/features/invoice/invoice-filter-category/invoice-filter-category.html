@@ -1,0 +1,16 @@
+<div class="filter-card">
+	<div class="icon-wrapper bg-cyan">
+		<mat-icon>category</mat-icon>
+	</div>
+	<div class="filter-content">
+		<span class="label">CATEGORY</span>
+		<mat-form-field appearance="outline" class="full-width">
+			<mat-select [(ngModel)]="category" (selectionChange)="onSelectionChange()">
+				<mat-option value="">All Categories</mat-option>
+				@for (c of categories; track c) {
+					<mat-option [value]="c">{{ c }}</mat-option>
+				}
+			</mat-select>
+		</mat-form-field>
+	</div>
+</div>

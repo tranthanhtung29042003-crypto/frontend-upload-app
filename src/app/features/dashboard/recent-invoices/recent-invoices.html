@@ -1,7 +1,8 @@
  <div class="table-container card">
       <div class="card-header">
         <h3>Recent Invoices</h3>
-        <button class="btn-link">View All Archive</button>
+        <a routerLink="/invoices">View All Invoice</a>
+
       </div>
       <table class="data-table">
         <thead>
@@ -19,10 +20,14 @@
           <td>
             <strong>{{ invoice.vendor_name }}</strong>
             <br>
-            <small><a [href]="invoice.image_link" target="_blank">View Image</a></small>
+            <small>
+              <a [href]="'/detail/' + invoice.transaction_id" target="_blank">
+  <mat-icon>visibility</mat-icon>
+</a>
+              <a [href]="invoice.image_link" target="_blank"><mat-icon class>photo</mat-icon></a></small>
           </td>
           <td>{{ formatDate(invoice.created_at) }}</td>
-          <td><span class="tag">{{ invoice.invoice_number }}</span></td>
+          <td><span class="tag">{{ invoice.category }}</span></td>
           <td>{{ formatCurrency(invoice.total) }}</td>
           <td>
   <span class="status" [ngClass]="invoice.status || 'unknown'">

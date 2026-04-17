@@ -14,7 +14,7 @@ export class UploadView {
 
   @Input() uploadResults: any[] = [];
   @Output() onErrorClick = new EventEmitter<string>();
-
+  
   handleErrorClick(item: any) {
     if (item.status === 'ERROR') {
       this.onErrorClick.emit('Hình ảnh này không phải hóa đơn hợp lệ.');

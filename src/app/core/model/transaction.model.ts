@@ -6,9 +6,13 @@ export interface InvoiceItem {
 }
 
 export interface Invoice {
+  id: string;
   category: string;
+  transaction_id: string;
   invoice_number: string;
   image_link: string;
+  invoice_id: string;
+  sheet_link: string;
   items: InvoiceItem[];
   vendor_name: string;
   total: number;

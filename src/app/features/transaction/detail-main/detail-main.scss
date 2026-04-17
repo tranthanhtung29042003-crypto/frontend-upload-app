@@ -14,205 +14,340 @@
 .main-card {
   background: $white;
   border-radius: 16px;
-  padding: 2.5rem;
+  padding: 1.5rem 2rem; // Tối ưu padding để dành chỗ cho nội dung
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
   border: 1px solid rgba(0, 0, 0, 0.02);
 
-  // 1. Error Banner (Cảnh báo lỗi trích xuất)
-  .error-banner {
-    display: flex;
-    gap: 12px;
-    margin-bottom: 2rem;
-    padding: 1rem 1.2rem;
-    background: $error-bg;
-    border-left: 4px solid $error-red;
-    border-radius: 4px;
+  // Cấu trúc Flexbox để kiểm soát chiều cao
+  display: flex;
+  flex-direction: column;
 
-    .warning-icon { 
-      color: $error-red; 
-      font-size: 1.2rem; 
-    }
+  // Quan trọng: Ép Card không được vượt quá màn hình (trừ đi khoảng 200px cho header/footer trang)
+  // Nếu vẫn mất nút Edit, hãy tăng con số 200px này lên (ví dụ 250px)
+  max-height: calc(100vh - 200px);
+  overflow: hidden;
+  position: relative;
 
-    .banner-text {
-      strong { 
-        display: block;
-        margin-bottom: 2px;
-        color: $error-red; 
-        font-size: 0.9rem; 
-      }
-      p { 
-        margin: 0; 
-        color: #7a3a3a;
-        font-size: 0.8rem; 
-        line-height: 1.4; 
-      }
-    }
+  .id-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 1rem;
+    padding: 6px 14px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #eef2ff, #f8f9ff);
+    color: #4f46e5;
+    font-size: 0.8rem;
+    font-weight: 700;
+    border: 1px solid #e0e7ff;
+    flex-shrink: 0; // Không cho phép badge bị méo
   }
 
+  .section-label {
+    @include label-style;
+    margin-bottom: 1.5rem;
+    flex-shrink: 0;
+  }
+
+  // VÙNG CUỘN CHÍNH
   .form-body {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: 12px; // Chừa chỗ cho scrollbar
+
+    // Custom scrollbar cho đẹp
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: #e5e7eb;
+      border-radius: 10px;
+    }
+
     .row {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 1.5rem;
+      margin-bottom: 1.5rem;
     }
 
     .input-group {
-  margin-bottom: 1.5rem;
+      margin-bottom: 1rem;
 
-  label {
-    display: block;
-    margin-bottom: 8px;
-    color: #8c94a3; 
-    font-size: 0.65rem;
-    font-weight: 800;
-    letter-spacing: 0.8px;
-    text-transform: uppercase;
-  }
-
-  .input-container {
-    position: relative;
-    display: flex;
-    align-items: center;
-
-    input {
-      width: 100%;
-      padding: 12px 16px;
-      padding-right: 40px; // Chừa khoảng trống cho icon bên phải
-      background: #f4f5f7; 
-      border: 1px solid transparent;
-      border-radius: 8px;
-      color: #333;
-      font-size: 0.95rem;
-      font-weight: 700; // Vendor name trong ảnh khá đậm
-      cursor: default;
-
-      &:focus {
-        outline: none;
-      }
-    }
-
-    // Tái tạo icon check màu xanh trong vòng tròn như ảnh
-    .check-icon-circle {
-      position: absolute;
-      right: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      
-      width: 16px;
-      height: 16px;
-      background: #1a73e8; // Màu xanh đặc trưng của Google/Nexus
-      color: white;
-      font-size: 10px;
-      border-radius: 50%;
-      font-weight: bold;
-      
-      // Đảm bảo dấu check nằm chính giữa
-      line-height: 1;
-      pointer-events: none; 
-    }
-  }
-}
-
-    .total-amount-box {
-      margin: 20px 0;
-      padding: 1.5rem 1.2rem;
-      background: #f8f9ff;
-      border: 1px solid #eef0f7;
-      border-radius: 12px;
-      
-      label { 
+      label {
         @include label-style;
-        color: $primary-color; // Màu xanh làm điểm nhấn
       }
-      
+
+      .input-container {
+        position: relative;
+
+        input {
+          width: 100%;
+          padding: 12px 16px;
+          background: #f4f5f7;
+          max-height: 500px;
+          border: 1px solid transparent;
+          border-radius: 8px;
+          font-weight: 700;
+          color: #333;
+
+          &:focus {
+            outline: none;
+            border-color: #4f46e5;
+            background: #fff;
+          }
+        }
+
+        .check-icon-circle {
+          position: absolute;
+          right: 12px;
+          top: 50%;
+          transform: translateY(-50%);
+          width: 16px;
+          height: 16px;
+          background: #1a73e8;
+          color: white;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 10px;
+        }
+      }
+    }
+
+    .line-items-section {
+      display: flex;
+      flex-direction: column;
+      margin-top: 1.5rem;
+
+      .items-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 12px;
+
+        label {
+          margin-bottom: 0; // Ghi đè label mặc định để thẳng hàng với nút
+          @include label-style;
+        }
+
+        // Decor lại nút Add Item
+        .add-btn {
+          display: flex;
+          align-items: center;
+          gap: 4px;
+          padding: 6px 12px;
+          background-color: #f0f7ff;
+          color: #4f46e5;
+          border: 1px solid #e0e7ff;
+          border-radius: 8px;
+          font-size: 0.75rem;
+          font-weight: 700;
+          cursor: pointer;
+          transition: all 0.2s ease;
+
+          mat-icon {
+            font-size: 16px;
+            width: 16px;
+            height: 16px;
+          }
+
+          &:hover {
+            background-color: #4f46e5;
+            color: white;
+            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.2);
+          }
+
+          &:active {
+            transform: scale(0.95);
+          }
+        }
+      }
+
+      .table-container {
+        max-height: 200px;
+        overflow-y: auto;
+        border: 1px solid #f1f5f9;
+        border-radius: 12px;
+
+        .items-table {
+          width: 100%;
+          border-collapse: collapse;
+
+          thead {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background: white;
+
+            th {
+              padding: 12px;
+              border-bottom: 2px solid #f8fafc;
+              background: white;
+              color: #94a3b8;
+              font-size: 0.65rem;
+              text-transform: uppercase;
+            }
+          }
+
+          .item-row {
+            transition: background-color 0.2s;
+
+            &:hover {
+              background: #f8faff;
+
+              // Hiện viền nhẹ khi hover để người dùng biết có thể tương tác
+              .cell-input:not([readonly]) {
+                border-color: #e2e8f0;
+              }
+            }
+
+            td {
+              padding: 8px 12px;
+              border-bottom: 1px solid #f8fafc;
+              vertical-align: middle;
+
+              .cell-input {
+                width: 100%;
+                padding: 8px 10px;
+                border: 1px solid transparent; // Ẩn viền mặc định
+                border-radius: 6px;
+                background: transparent;
+                font-size: 0.85rem;
+                font-weight: 500;
+                color: #334155;
+                transition: all 0.2s ease;
+                font-family: inherit;
+
+                // Căn lề cho số
+                &.center {
+                  text-align: center;
+                }
+
+                &.right {
+                  text-align: right;
+                }
+
+                // Khi ở chế độ Readonly (isEditing = false)
+                &[readonly] {
+                  cursor: default;
+                  font-weight: 600; // Đậm hơn một chút để dễ đọc thông tin cố định
+                  color: #1e293b;
+                }
+
+                // Khi đang Edit (isEditing = true)
+                &:not([readonly]) {
+                  background: #ffffff;
+                  border-color: #f1f5f9;
+                  cursor: text;
+
+                  &:focus {
+                    outline: none;
+                    border-color: #4f46e5;
+                    background: #fff;
+                    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+                  }
+
+                  &:hover {
+                    border-color: #cbd5e1;
+                  }
+                }
+              }
+            }
+
+            // Decor riêng cho ô Amount (thường không cho sửa nên làm nổi bật font)
+            .amount-cell {
+              font-weight: 700;
+              color: #1e293b;
+              font-size: 0.9rem;
+            }
+
+            // Decor nút xóa (Delete)
+            .delete-btn {
+              width: 32px;
+              height: 32px;
+              display: inline-flex;
+              align-items: center;
+              justify-content: center;
+              background: #fff;
+              color: #94a3b8;
+              border: 1px solid #e2e8f0;
+              border-radius: 8px;
+              cursor: pointer;
+              transition: all 0.2s;
+
+              mat-icon {
+                font-size: 18px;
+                width: 18px;
+                height: 18px;
+              }
+
+              &:hover {
+                background: #fef2f2;
+                color: #ef4444;
+                border-color: #fee2e2;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    // TỔNG TIỀN (DÍNH Ở ĐÁY FORM NẾU MUỐN)
+    .total-amount-box {
+      margin: 2rem 0 1rem 0;
+      padding: 1.5rem;
+      background: #f8f9ff;
+      border-radius: 12px;
+      border: 1px solid #eef0f7;
+
+      label {
+        @include label-style;
+        color: #4f46e5;
+      }
+
       .amount-display {
         display: flex;
         justify-content: space-between;
         align-items: center;
 
-        .value { 
-          font-size: 1.8rem; 
-          font-weight: 800; 
-          color: $primary-color; 
-          letter-spacing: -0.5px;
+        .value {
+          font-size: 1.8rem;
+          font-weight: 800;
+          color: #4f46e5;
         }
-        .currency { 
-          color: #99abb4; 
+
+        .currency {
+          color: #99abb4;
           font-weight: 700;
-          font-size: 0.9rem;
-        }
-      }
-    }
-
-    // 4. Line Items Table (Bảng chi tiết hàng hóa)
-    .items-table {
-      width: 100%;
-      margin-top: 1.5rem;
-      border-collapse: collapse;
-      font-size: 0.85rem;
-
-      th {
-        padding: 12px 8px;
-        color: #99abb4;
-        font-size: 0.65rem;
-        font-weight: 800;
-        text-align: left;
-        text-transform: uppercase;
-        border-bottom: 1px solid #eee;
-      }
-
-      td {
-        padding: 14px 8px;
-        border-bottom: 1px solid #f8f9fa;
-        color: $text-main;
-      }
-
-      .item-name { 
-        font-weight: 600; 
-        color: #2c3e50;
-      }
-      
-      .text-center { text-align: center; }
-      .text-right { text-align: right; }
-      .font-bold { font-weight: 700; }
-    }
-
-    // 5. Grouping Logic Box (Phần màu vàng cam dưới cùng)
-    .grouping-logic {
-      display: flex;
-      gap: 16px;
-      margin-top: 2rem;
-      padding: 1.2rem;
-      background: $warning-bg;
-      border-radius: 12px;
-
-      .logic-icon {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        min-width: 36px;
-        height: 36px;
-        background: $warning-orange;
-        color: $white;
-        border-radius: 8px;
-        font-size: 1.1rem;
-      }
-
-      .logic-content {
-        strong { 
-          display: block;
-          margin-bottom: 4px;
-          color: #5d4037; 
-          font-size: 0.9rem; 
-        }
-        p { 
-          margin: 0; 
-          color: #795548; 
-          font-size: 0.8rem; 
-          line-height: 1.5; 
         }
       }
     }
   }
+}
+
+// Định dạng chung cho các nút Delete
+.delete-btn {
+  background: none;
+  border: none;
+  color: #ff4d4f;
+  cursor: pointer;
+  font-size: 1.1rem;
+  padding: 4px 8px;
+  border-radius: 4px;
+
+  &:hover {
+    background: #fff1f0;
+  }
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
 }

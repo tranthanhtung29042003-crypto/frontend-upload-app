@@ -3,20 +3,17 @@
 
 .dashboard-wrapper {
   display: flex;
-  height: 100vh;    // BẮT BUỘC: Phải dùng height thay vì min-height ở đây
-  width: 100%;
-  overflow: hidden; // Ngăn không cho cả trang cuộn (chỉ cuộn bên trong content)
-  background-color: $white;
+  height: 100vh;      // Khóa chiều cao bằng màn hình
+  overflow: hidden;    // Không cho cả trang cuộn
 }
 
 .main-content {
   flex: 1;
+  height: 100vh;      // Bắt buộc có để vùng này tự sinh thanh cuộn
+  overflow-y: auto;    // Cho phép cuộn nội dung bên trong
   padding: 32px;
-  height: 100vh;    // Chiều cao bằng đúng màn hình
-  overflow-y: auto; // KÍCH HOẠT CUỘN DỌC TẠI ĐÂY
-  
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
   gap: 24px;
 }
 
@@ -32,7 +29,7 @@
     &.red{
       background-color: #FFDAD6
     }
-    .label { font-size: 1.5rem; font-weight: bold; text-transform: uppercase; color: $text-muted; }
+    .label { font-size: 1.5rem; font-weight: bold; text-transform: uppercase; color: $text-muted; padding: 4px; }
     .value-group {
       display: flex;
       align-items: baseline;

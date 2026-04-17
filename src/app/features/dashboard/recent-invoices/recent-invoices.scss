@@ -4,7 +4,12 @@
   flex-shrink: 0;      // Ngăn không cho bảng bị co lại quá mức
   min-height: min-content; 
   padding-bottom: 50px; // Thêm khoảng trống dưới cùng để không bị sát mép
-.data-table {
+.card-header{
+  display: flex;
+  justify-content: space-between;
+}
+
+  .data-table {
   width: 100%;
   border-collapse: collapse;
   th { text-align: left; padding: 12px; font-size: 0.75rem; color: $text-muted; border-bottom: 1px solid #F1F5F9; }

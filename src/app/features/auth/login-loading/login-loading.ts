@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from '../../../services/user';
 import { MatIconModule } from '@angular/material/icon';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-login-loading',
@@ -17,31 +18,23 @@ export class LoginLoading implements OnInit {
     private router: Router
   ) { }
 
+ private destroy$ = new Subject<void>();
+  isChecking = false;
+
   ngOnInit() {
-    this.waitForLogin();
+  this.userService.getUser().subscribe((res: any) => {
+    if (res?.logged_in) {
+      this.router.navigate(['/dashboard']);
+    } else {
+      window.location.href = '/api/login';
+    }
+  });
+}
+
+  ngOnDestroy() {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
-  waitForLogin(retry = 0) {
-  this.userService.getUser().subscribe(
-    (res: any) => {
-      console.log('Dữ liệu nhận được:', res); // <--- Thêm dòng này để debug
-      if (res && res.logged_in) {
-        console.log('Đang chuyển hướng sang dashboard...');
-        this.router.navigate(['/dashboard']);
-      } else {
-        if (retry < 6) {
-          setTimeout(() => this.waitForLogin(retry + 1), 500);
-        } else {
-          window.location.href = '/api/login';
-        }
-      }
-    },
-    err => {
-      console.error('Lỗi gọi API:', err); // Nếu vẫn hiện ERR_FAILED, nó sẽ nhảy vào đây
-      if (retry < 6) {
-        setTimeout(() => this.waitForLogin(retry + 1), 500);
-      }
-    }
-  );
-}
+
 }

@@ -2,10 +2,12 @@ import { Component, signal } from '@angular/core';
 import { Invoice } from '../../../core/model/transaction.model';
 import { Infomation } from '../../../services/infomation';
 import { NgClass } from '@angular/common';
+import { MatIcon } from '@angular/material/icon';
+import { RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-recent-invoices',
-  imports: [NgClass],
+  imports: [NgClass, MatIcon, RouterLink],
   templateUrl: './recent-invoices.html',
   styleUrl: './recent-invoices.scss',
 })

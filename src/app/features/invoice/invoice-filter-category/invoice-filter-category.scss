@@ -1,0 +1,84 @@
+.filter-row {
+  display: flex;
+  gap: 20px;
+  background-color: #f8fafc; // Màu nền xám nhạt như hình
+  padding: 20px;
+}
+
+.filter-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex: 1; // Giúp các card dãn đều nhau trên màn hình rộng
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+
+  .icon-wrapper {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    mat-icon {
+      font-size: 22px;
+      width: 22px;
+      height: 22px;
+    }
+
+    // Màu sắc riêng cho từng icon
+    &.bg-blue {
+      background-color: #f0f3ff;
+      color: #3b5bdb;
+    }
+    &.bg-cyan {
+      background-color: #e3f2fd;
+      color: #1565c0;
+    }
+    &.bg-orange {
+      background-color: #fff4e6;
+      color: #945700;
+    }
+  }
+
+  .filter-content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+
+    .label {
+      font-size: 10px;
+      font-weight: 700;
+      color: #94a3b8;
+      letter-spacing: 0.5px;
+      margin-bottom: 4px;
+    }
+
+    .select-wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+
+      .value {
+        font-size: 14px;
+        font-weight: 600;
+        color: #1e293b;
+      }
+
+      .arrow {
+        color: #94a3b8;
+        font-size: 20px;
+      }
+    }
+
+    .value { // Dành cho card không có dropdown
+      font-size: 14px;
+      font-weight: 600;
+      color: #64748b;
+    }
+  }
+}

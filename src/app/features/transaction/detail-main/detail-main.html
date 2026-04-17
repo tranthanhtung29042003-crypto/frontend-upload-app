@@ -1,67 +1,158 @@
 <main class="main-card">
+  <div class="id-badge">
+    <mat-icon style="font-size:16px;">tag</mat-icon>
+    {{ invoice.invoice_id }}
+  </div>
+
   <div class="section-label">DOCUMENT DETAILS</div>
 
-  <div class="form-body">
-    <div class="input-group">
-      <label>VENDOR</label>
-      <div class="input-container">
-        <input type="text" [value]="invoice().vendor_name" readonly>
-        <span class="check-icon-circle">✓</span>
-      </div>
-    </div>
+  @if (form()) {
+    <div class="form-body">
 
-    <div class="row">
+      <!-- VENDOR -->
       <div class="input-group">
-        <label>INVOICE NUMBER</label>
+        <label>VENDOR</label>
         <div class="input-container">
- <input type="text" [value]="invoice().invoice_number" readonly>
+          <input
+            type="text"
+            [ngModel]="form()?.vendor_name"
+            (ngModelChange)="updateField('vendor_name', $event)"
+            [readonly]="!isEditing"
+          />
+          <span class="check-icon-circle">✓</span>
         </div>
-       
       </div>
-      <div class="input-group">
-        <label>CATEGORY</label>
-        <div class="input-container">
-<input type="text" [value]="invoice().category" readonly>
+
+      <!-- ROW -->
+      <div class="row">
+
+        <div class="input-group">
+          <label>INVOICE NUMBER</label>
+          <div class="input-container">
+            <input
+              type="text"
+              [ngModel]="form()?.invoice_number"
+              (ngModelChange)="updateField('invoice_number', $event)"
+              [readonly]="!isEditing"
+            />
+          </div>
         </div>
-        
-       
-      </div>
-    </div>
 
-    <div class="total-amount-box">
-      <label>TOTAL AMOUNT</label>
-      <div class="amount-display">
-        <span class="value">{{ invoice().total | number }}</span>
-        <span class="currency">VND</span>
-      </div>
-    </div>
+        <div class="input-group">
+          <label>CATEGORY</label>
+          <div class="input-container">
+            <input
+              type="text"
+              [ngModel]="form()?.category"
+              (ngModelChange)="updateField('category', $event)"
+              [readonly]="!isEditing"
+            />
+          </div>
+        </div>
 
-    <div class="line-items-section">
-      <label>ITEMS</label>
-      <table class="items-table">
-        <thead>
-          <tr>
-            <th>ITEM</th>
-            <th class="text-center">QTY</th>
-            <th class="text-right">UNIT PRICE</th>
-            <th class="text-right">AMOUNT</th>
-          </tr>
-        </thead>
-        <tbody>
-          @for (item of invoice().items; track $index) {
-          <tr>
-            <td class="item-name">{{ item.item_name }}</td>
-            <td class="text-center">{{ item.quantity }}</td>
-            <td class="text-right">{{ item.unit_price | number }}</td>
-            <td class="text-right font-bold">{{ item.amount | number }}</td>
-          </tr>
-          } @empty {
-            <tr>
-              <td colspan="4" class="text-center">No items found.</td>
-            </tr>
+      </div>
+
+      <!-- ITEMS -->
+      <div class="line-items-section">
+
+        <div class="items-header">
+          <label>ITEMS</label>
+
+          @if (isEditing) {
+            <button class="add-btn" type="button" (click)="addItem()">
+              <mat-icon>add</mat-icon>
+              Add Item
+            </button>
           }
-        </tbody>
-      </table>
+        </div>
+
+        <div class="table-container">
+          <table class="items-table">
+
+            <thead>
+              <tr>
+                <th>ITEM</th>
+                <th class="text-center">QTY</th>
+                <th class="text-right">UNIT PRICE</th>
+                <th class="text-right">AMOUNT</th>
+
+                @if (isEditing) {
+                  <th class="text-center">ACTION</th>
+                }
+              </tr>
+            </thead>
+
+            <tbody>
+              @for (item of form()?.items || []; track $index) {
+                <tr class="item-row">
+
+                  <td>
+                    <input
+                      class="cell-input"
+                      [(ngModel)]="item.item_name"
+                      [readonly]="!isEditing"
+                    />
+                  </td>
+
+                  <td class="text-center">
+                    <input
+                      class="cell-input center"
+                      type="number"
+                      [(ngModel)]="item.quantity"
+                      (ngModelChange)="onItemChange($index)"
+                      [readonly]="!isEditing"
+                    />
+                  </td>
+
+                  <td class="text-right">
+                    <input
+                      class="cell-input right"
+                      type="number"
+                      [(ngModel)]="item.unit_price"
+                      (ngModelChange)="onItemChange($index)"
+                      [readonly]="!isEditing"
+                    />
+                  </td>
+
+                  <td class="text-right amount-cell">
+                    {{ formatVND(item.quantity * item.unit_price) }}
+                  </td>
+
+                  @if (isEditing) {
+                    <td class="text-center">
+                      <button
+                        class="delete-btn"
+                        type="button"
+                        (click)="removeItem($index)"
+                      >
+                        <mat-icon>close</mat-icon>
+                      </button>
+                    </td>
+                  }
+
+                </tr>
+              } @empty {
+                <tr>
+                  <td [attr.colspan]="isEditing ? 5 : 4" class="text-center empty">
+                    No items found.
+                  </td>
+                </tr>
+              }
+            </tbody>
+
+          </table>
+        </div>
+      </div>
+
+      <!-- TOTAL -->
+      <div class="total-amount-box">
+        <label>TOTAL AMOUNT</label>
+        <div class="amount-display">
+          <span class="value">{{ total() | number }}</span>
+          <span class="currency">VND</span>
+        </div>
+      </div>
+
     </div>
-  </div>
+  }
 </main>

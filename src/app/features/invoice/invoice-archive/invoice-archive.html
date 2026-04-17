@@ -1,11 +1,11 @@
 <header class="archive-header">
     <div class="title-area">
       <h1>Invoice Archive</h1>
-      <p>Manage and review your historical financial records.</p>
+      <p>Manage and review your historical invoices records.</p>
     </div>
     <div class="status-tabs">
-      <button class="tab active">All</button>
-      <button class="tab">Pending</button>
-      <button class="tab">Archived</button>
+      <button (click)="setTab('ALL')" class="tab" [class.active]="currentTab === 'ALL'">All</button>
+      <button (click)="setTab('OK')" class="tab" [class.active]="currentTab === 'OK'">OK</button>
+      <button (click)="setTab('ERROR')" class="tab"  [class.active]="currentTab === 'ERROR'">ERROR</button>
     </div>
   </header>

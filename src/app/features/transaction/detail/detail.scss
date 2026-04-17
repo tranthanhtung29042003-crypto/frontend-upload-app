@@ -120,6 +120,55 @@
         transform: translateY(0);
       }
     }
+
+    .btn-edit {
+      background: $success;
+      color: $white;
+      padding: 12px 28px;
+      border-radius: 10px;
+      border: none;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 4px 14px rgba(43, 58, 139, 0.3);
+      transition: transform 0.2s, background 0.2s;
+
+      &:hover {
+        background: #1a237e;
+        transform: translateY(-1px);
+      }
+
+      &:active {
+        transform: translateY(0);
+      }
+    }
+    .btn-cancel {
+      background: $text-muted;
+      color: $white;
+      padding: 12px 28px;
+      border-radius: 10px;
+      border: none;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 4px 14px rgba(43, 58, 139, 0.3);
+      transition: transform 0.2s, background 0.2s;
+
+      &:hover {
+        background: $warning;
+        transform: translateY(-1px);
+      }
+
+      &:active {
+        transform: translateY(0);
+      }
+    }
   }
 
   .loading-state {
@@ -128,6 +177,48 @@
     color: $text-muted;
     font-style: italic;
   }
+  .detail-wrapper {
+  position: relative;
+}
+
+/* nội dung chính */
+.content.blur {
+  filter: blur(4px);
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* 🔥 overlay center */
+.overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  z-index: 10;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* button đẹp hơn */
+.overlay button {
+  padding: 12px 20px;
+  font-size: 16px;
+  background: #ff9800;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  align-self: center;
+
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.overlay button:hover {
+  background: #f57c00;
+}
 }
 
 
@@ -162,4 +253,18 @@
     .form-body .row { grid-template-columns: 1fr; }
     .action-footer { flex-direction: column-reverse; gap: 1rem; width: 100%; .btn-save { width: 100%; justify-content: center; } }
   }
+
+  .retry-bar {
+  background: #fff3cd;
+  padding: 10px;
+  border: 1px solid #ffeeba;
+  margin-bottom: 10px;
+  border-radius: 6px;
+}
+
+.blur {
+  opacity: 0.4;
+  pointer-events: none; // ❗ chặn click
+  filter: blur(2px);    // ❗ hiệu ứng mờ xịn hơn
+}
 }

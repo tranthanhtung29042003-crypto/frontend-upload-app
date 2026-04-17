@@ -1,53 +1,65 @@
-<div class="table card">
+<div class="table-container">
   <div class="thead">
     <span>Vendor</span>
     <span>Date</span>
     <span>Category</span>
-    <span>Amount</span>
+    <span>Total</span>
     <span>Status</span>
-    <span></span>
   </div>
 
-  <div class="invoice-table">
-    @for (item of paginatedData; track $index) {
-      <div class="row">
-        <div class="col vendor">
-          <div class="avatar">{{ item.name[0] }}</div>
-          <div class="vendor-info">
-            <span class="name">{{ item.name }}</span>
-            <span class="code">{{ item.code }}</span>
-          </div>
-        </div>
+  <div class="scroll-area">
+    <div class="invoice-table">
+      @if (loading) {
+        <div class="loading">Loading...</div>
+      } @else {
+        @if (invoices.length === 0) {
+          <div class="empty-state">No invoices found.</div>
+        } @else {
+          @for (item of invoices; track $index) {
+            <div class="row">
+              <div class="col vendor">
+                <div class="vendor-info">
+                  <span class="name">{{ item.vendor_name }}</span>
+                  <div class="actions">
+                    <a [href]="'/detail/' + item.transaction_id" target="_blank">
+                      <mat-icon>visibility</mat-icon>
+                    </a>
+                    <a [href]="item.image_link" target="_blank">
+                      <mat-icon>photo</mat-icon>
+                    </a>
+                    <a [href]="item.sheet_link" target="_blank">
+                      <mat-icon>article</mat-icon>
+                    </a>
+                  </div>
+                </div>
+              </div>
 
-        <div class="col date">{{ item.date }}</div>
+              <div class="col date">{{ item.created_at }}</div>
 
-        <div class="col">
-          <span class="badge">{{ item.category }}</span>
-        </div>
+              <div class="col">
+                <span class="badge">{{ item.category }}</span>
+              </div>
 
-        <div class="col amount">{{ item.amount }}</div>
+              <div class="col amount">{{ formatCurrency(item.total) }}</div>
 
-        <div class="col status">
-          <span [ngClass]="item.status === 'Processed' ? 'ok' : 'fail'">
-            ● {{ item.status }}
-          </span>
-        </div>
-
-        <div class="col menu">
-          <button mat-icon-button>
-            <mat-icon>more_vert</mat-icon>
-          </button>
-        </div>
-      </div>
-    } @empty {
-      <div class="empty-state">No invoices found.</div>
-    }
+              <div class="col status">
+                <span [ngClass]="item.status === 'OK' ? 'ok' : 'error'">
+                  ● {{ item.status }}
+                </span>
+              </div>
+            </div>
+          }
+        }
+      }
+    </div>
   </div>
 
-  <app-invoice-pagination 
-    [totalItems]="invoices.length"
-    [pageSize]="pageSize"
+ <div class="pagination-footer">
+  <app-invoice-pagination
+    [totalItems]="totalItems"
+    [pageSize]="8"
     [currentPage]="currentPage"
     (pageChange)="onPageChange($event)">
   </app-invoice-pagination>
+</div>
 </div>

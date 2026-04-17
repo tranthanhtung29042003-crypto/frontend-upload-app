@@ -1,0 +1,15 @@
+@if(storage){
+  <div class="storage-card">
+    <h3>Your Drive </h3>
+
+    <mat-progress-bar
+      mode="determinate"
+      [value]="storage.percent">
+    </mat-progress-bar>
+
+    <div class="storage-footer">
+      <span>{{ storage.usedGB }} GB used</span>
+      <span>{{ storage.totalGB }} GB Total</span>
+    </div>
+  </div>
+}

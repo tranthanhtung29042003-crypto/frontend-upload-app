@@ -14,7 +14,7 @@ export class Login {
   constructor(private router: Router) {}
 
   login() {
-    // 👉 chuyển sang trang loading trước
+ 
     this.router.navigate(['auth/login-loading']);
   }
 }

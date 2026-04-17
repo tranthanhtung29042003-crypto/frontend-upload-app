@@ -2,13 +2,13 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-invoice-pagination',
-  imports: [],
+  standalone: true,
   templateUrl: './invoice-pagination.html',
-  styleUrl: './invoice-pagination.scss',
+  styleUrls: ['./invoice-pagination.scss'],
 })
 export class InvoicePagination {
 
-   @Input() totalItems = 0;
+  @Input() totalItems = 0;
   @Input() pageSize = 5;
   @Input() currentPage = 1;
 

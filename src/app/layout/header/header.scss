@@ -8,38 +8,71 @@
    background-color: #ffffff;
    border-bottom: 1px solid #f0f0f0;
 
-   .search-section {
-     flex: 1;
+  .search-section {
+  flex: 1;
+  display: flex;
+  justify-content: center;
 
-     .search-wrapper {
-       display: flex;
-       align-items: center;
-       background-color: #f1f3f4; // Màu xám nhạt của search bar
-       border-radius: 50px; // Bo tròn tối đa
-       padding: 6px 16px;
-       width: 100%;
-       max-width: 700px;
+  .search-wrapper {
+    display: flex;
+    align-items: center;
+    background-color: #f1f3f4;
+    border-radius: 50px;
+    padding: 8px 16px;
+    width: 100%;
+    max-width: 700px;
+    transition: all 0.2s ease;
 
-       mat-icon {
-         color: #5f6368;
-         font-size: 20px;
-         margin-right: 10px;
-       }
+    &:focus-within {
+      background-color: #fff;
+      box-shadow: 0 1px 6px rgba(32, 33, 36, 0.28);
+    }
 
-       input {
-         border: none;
-         background: transparent;
-         outline: none;
-         width: 100%;
-         color: #3c4043;
-         font-size: 14px;
+    mat-icon {
+      color: #5f6368;
+      font-size: 20px;
+      margin-right: 10px;
+    }
 
-         &::placeholder {
-           color: #80868b;
-         }
-       }
-     }
-   }
+    input {
+      border: none;
+      background: transparent;
+      outline: none;
+
+      color: #3c4043;
+      font-size: 14px;
+
+      &::placeholder {
+        color: #80868b;
+      }
+    }
+  }
+}
+
+/* result list */
+.result-list {
+  position: absolute;
+  background: white;
+  width: 700px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.card {
+  padding: 12px;
+  margin-top: 8px;
+  border-radius: 10px;
+  display: flex;
+  font: 12px;
+  justify-content: space-between;
+  border: 1px solid #eee;
+  transition: all 0.2s;
+
+  &:hover {
+    background: #f9f9f9;
+    cursor: pointer;
+  }
+}
 
    .action-section {
      display: flex;

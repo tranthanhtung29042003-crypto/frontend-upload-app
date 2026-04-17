@@ -1,0 +1,20 @@
+.storage-card {
+    background: white; border-radius: 24px; padding: 24px;
+  }
+
+.storage-card {
+    background: #283593; color: white; // Màu xanh đậm cho card bộ nhớ
+    h3 { font-size: 16px; margin-bottom: 15px; }
+    
+    // Tùy chỉnh thanh progress bar
+    ::ng-deep .mat-mdc-progress-bar {
+      height: 8px; border-radius: 4px;
+      --mdc-linear-progress-active-indicator-color: #ffffff;
+      --mdc-linear-progress-track-color: rgba(255,255,255,0.2);
+    }
+    
+    .storage-footer {
+      display: flex; justify-content: space-between;
+      font-size: 11px; margin-top: 10px; opacity: 0.8;
+    }
+  }

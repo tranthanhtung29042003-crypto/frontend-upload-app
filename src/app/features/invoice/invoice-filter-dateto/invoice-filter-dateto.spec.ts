@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { UploadProgress } from './upload-progress';
+import { InvoiceFilterDateto } from './invoice-filter-dateto';
 
-describe('UploadProgress', () => {
-  let component: UploadProgress;
-  let fixture: ComponentFixture<UploadProgress>;
+describe('InvoiceFilterDateto', () => {
+  let component: InvoiceFilterDateto;
+  let fixture: ComponentFixture<InvoiceFilterDateto>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [UploadProgress],
+      imports: [InvoiceFilterDateto],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(UploadProgress);
+    fixture = TestBed.createComponent(InvoiceFilterDateto);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

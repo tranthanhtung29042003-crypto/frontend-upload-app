@@ -1,11 +1,15 @@
 <div class="archive-container">
+
   <app-invoice-archive></app-invoice-archive>
-
-
 
   <app-invoice-filters></app-invoice-filters>
 
-  <app-invoice-table></app-invoice-table>
-
+ <app-invoice-table
+  [invoices]="(invoices$ | async) ?? []"
+  [loading]="(loading$ | async) ?? false"
+  [totalItems]="(totalItems$ | async) ?? 0"
+  [currentPage]="currentPage"
+  (pageChange)="onPageChange($event)">
+</app-invoice-table>
 
 </div>

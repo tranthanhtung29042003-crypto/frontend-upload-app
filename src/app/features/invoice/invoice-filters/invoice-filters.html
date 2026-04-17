@@ -1,37 +1,6 @@
 <div class="filter-row">
-  <div class="filter-card">
-    <div class="icon-wrapper bg-blue">
-      <mat-icon>calendar_today</mat-icon>
-    </div>
-    <div class="filter-content">
-      <span class="label">DATE RANGE</span>
-      <div class="select-wrapper">
-        <span class="value">Last 30 Days</span>
-        <mat-icon class="arrow">expand_more</mat-icon>
-      </div>
-    </div>
-  </div>
+  <app-invoice-filter-category (filterChanged)="onCategoryChange($event)"></app-invoice-filter-category>
 
-  <div class="filter-card">
-    <div class="icon-wrapper bg-cyan">
-      <mat-icon>category</mat-icon>
-    </div>
-    <div class="filter-content">
-      <span class="label">CATEGORY</span>
-      <div class="select-wrapper">
-        <span class="value">All Categories</span>
-        <mat-icon class="arrow">expand_more</mat-icon>
-      </div>
-    </div>
-  </div>
-
-  <div class="filter-card">
-    <div class="icon-wrapper bg-orange">
-      <mat-icon>payments</mat-icon>
-    </div>
-    <div class="filter-content">
-      <span class="label">MIN. AMOUNT</span>
-      <span class="value">$0.00</span>
-    </div>
-  </div>
+  <app-invoice-filter-datefrom (filterChanged)="onDateFromChange($event)"></app-invoice-filter-datefrom>
+  <app-invoice-filter-dateto (filterChanged)="onDateToChange($event)"></app-invoice-filter-dateto>
 </div>
